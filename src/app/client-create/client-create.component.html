@@ -1,104 +1,57 @@
-<form class="well form-horizontal" action=" " method="post" id="contact_form">
-  <fieldset>
+<h1 class="page-header">Create User</h1>
+<form class="" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
 
-    <!-- Form Name -->
-
-    <!-- Text input-->
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">First Name</label>
-      <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input name="first_name" placeholder="First Name" class="form-control" type="text">
+        <div class="form-group">
+          <label for="">First Name:</label>
+          <input type="text" formControlName="firstName" class="form-control" id="" placeholder="">
+          <p class="help-block">Help text here.</p>
         </div>
+        <div class="alert" *ngIf="!rForm.controls['firstName'].valid && rForm.controls['firstName'].touched">This is required</div>
+        <div class="form-group">
+          <label for="">Last Name:</label>
+          <input type="text" formControlName="lastName" class="form-control" id="" placeholder="">
+          <p class="help-block">Help text here.</p>
+        </div>
+        <div class="alert" *ngIf="!rForm.controls['lastName'].valid && rForm.controls['lastName'].touched">This is required</div>
+        <div class="form-group">
+          <label for="">Password:</label>
+          <input type="text" formControlName="password" class="form-control" id="" placeholder="">
+          <p class="help-block">Help text here.</p>
+        </div>
+        <div class="alert" *ngIf="!rForm.controls['password'].valid && rForm.controls['password'].touched">Password has to have more then 5 chars</div>
+
+
+      </div>
+      <div class="col-md-5">
+
+        <div class="form-group">
+          <label for="">First Name:</label>
+          <input type="text" formControlName="firstName" class="form-control" id="" placeholder="">
+          <p class="help-block">Help text here.</p>
+        </div>
+        <div class="alert" *ngIf="!rForm.controls['firstName'].valid && rForm.controls['firstName'].touched">This is required</div>
+        <div class="form-group">
+          <label for="">Last Name:</label>
+          <input type="text" formControlName="lastName" class="form-control" id="" placeholder="">
+          <p class="help-block">Help text here.</p>
+        </div>
+        <div class="alert" *ngIf="!rForm.controls['lastName'].valid && rForm.controls['lastName'].touched">This is required</div>
+        <div class="form-group">
+          <label for="">Password:</label>
+          <input type="text" formControlName="password" class="form-control" id="" placeholder="">
+          <p class="help-block">Help text here.</p>
+        </div>
+        <div class="alert" *ngIf="!rForm.controls['password'].valid && rForm.controls['password'].touched">Password has to have more then 5 chars</div>
+
+        <input type="checkbox" name="" value="">
+
+
+        <input type="submit" class="btn btn-primary btn-block " name="" value="Submit" [disabled]="!rForm.valid">
       </div>
     </div>
+  </div>
 
-    <!-- Text input-->
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Last Name</label>
-      <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input name="last_name" placeholder="Last Name" class="form-control" type="text">
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Bank</label>
-      <div class="col-md-4 selectContainer">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-          <select name="department" class="form-control selectpicker">
-    </select>
-        </div>
-      </div>
-    </div>
-
-    <!-- Text input-->
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Username</label>
-      <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input name="user_name" placeholder="Username" class="form-control" type="text">
-        </div>
-      </div>
-    </div>
-
-    <!-- Text input-->
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Confirm Password</label>
-      <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input name="confirm_password" placeholder="Confirm Password" class="form-control" type="password">
-        </div>
-      </div>
-    </div>
-
-    <!-- Text input-->
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Confirm Password</label>
-      <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input name="confirm_password" placeholder="Confirm Password" class="form-control" type="password">
-        </div>
-      </div>
-    </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label">E-Mail</label>
-      <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-          <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Text input-->
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Contact No.</label>
-      <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-          <input name="contact_no" placeholder="(639)" class="form-control" type="text">
-        </div>
-      </div>
-    </div>
-
-    <!-- Select Basic -->
-
-  </fieldset>
 </form>

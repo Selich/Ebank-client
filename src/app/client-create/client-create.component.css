@@ -1,0 +1,22 @@
+.alert {
+  background: #f2edda;
+  padding: 7px;
+  font-size: .9em;
+  margin-bottom: 20px;
+  display: inline-block;
+  box-shadow: 0 0 2px grey;
+  animation: 2s animAlert forwards;
+}
+
+
+@keyframes animAlert {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}

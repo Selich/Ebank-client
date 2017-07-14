@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { RouterModule, Routes } from '@angular/router';
 
+import { ClientListService } from './client-list/client-list.service';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -24,6 +26,10 @@ export const appRoutes: Routes = [
       { path: 'transactions', component: TransactionListComponent},
       { path: 'create', component: ClientCreateComponent},
     ]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 @NgModule({
@@ -41,12 +47,12 @@ export const appRoutes: Routes = [
     BrowserModule,
     HttpModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes
     )
   ],
-  providers: [],
+  providers: [ ClientListService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
