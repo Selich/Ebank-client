@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { RouterModule, Routes } from '@angular/router';
 
-import { ClientListService } from './client-list/client-list.service';
+import { ClientListService } from './client-list/client-list.service'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +14,9 @@ import { ClientListComponent } from './client-list/client-list.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { AccountListComponent } from './account-list/account-list.component';
 import { ClientSearchComponent } from './client-search/client-search.component';
+import { ClientCreateComponent } from './client-create/client-create.component';
+import { AccountComponent } from './account/account.component';
+import { ClientCreateComponent } from './client-create/client-create.component';
 import { ClientCreateComponent } from './client-create/client-create.component';
 
 export const appRoutes: Routes = [
@@ -30,7 +33,17 @@ export const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  }
+  },
+  {
+    path: 'app' ,
+    component: AppComponent,
+    children: [
+      { path: '', redirectTo: 'accounts',pathMatch: 'full'},
+      { path: 'accounts', component: AccountComponent},
+      { path: 'transactions', component: TransactionComponent},
+      { path: 'exchangeRates', component: ExchangeComponent},
+    ]
+  },
 ];
 @NgModule({
   declarations: [
