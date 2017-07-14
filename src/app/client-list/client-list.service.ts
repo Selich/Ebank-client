@@ -11,7 +11,7 @@ export class ClientListService{
 
 
   getClients(){
-    return this.http.get("http://localhost:8080/api/v1/user/list")
+    return this.http.get("http://localhost:8080/api/v1/ebank/client/list")
     .map((response:Response) => response.json());
   }
 

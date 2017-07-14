@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ClientListService } from './client-list/client-list.service'
+import { AccountService } from './transaction/account.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -15,9 +16,9 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
 import { AccountListComponent } from './account-list/account-list.component';
 import { ClientSearchComponent } from './client-search/client-search.component';
 import { ClientCreateComponent } from './client-create/client-create.component';
-import { AccountComponent } from './account/account.component';
-import { ClientCreateComponent } from './client-create/client-create.component';
-import { ClientCreateComponent } from './client-create/client-create.component';
+import { ExchangeComponent } from './exchange/exchange.component';
+import { TransactionComponent } from './transaction/transaction.component';
+import { MainComponent } from './main/main.component';
 
 export const appRoutes: Routes = [
   {
@@ -35,12 +36,16 @@ export const appRoutes: Routes = [
     component: LoginComponent
   },
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
     path: 'app' ,
-    component: AppComponent,
+    component: MainComponent,
     children: [
       { path: '', redirectTo: 'accounts',pathMatch: 'full'},
-      { path: 'accounts', component: AccountComponent},
-      { path: 'transactions', component: TransactionComponent},
+      { path: 'transaction', component: TransactionComponent},
       { path: 'exchangeRates', component: ExchangeComponent},
     ]
   },
@@ -48,6 +53,7 @@ export const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    MainComponent,
     LoginComponent,
     DashboardComponent,
     ClientListComponent,
@@ -55,6 +61,8 @@ export const appRoutes: Routes = [
     AccountListComponent,
     ClientSearchComponent,
     ClientCreateComponent,
+    TransactionComponent,
+    ExchangeComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +73,7 @@ export const appRoutes: Routes = [
       appRoutes
     )
   ],
-  providers: [ ClientListService ],
+  providers: [ ClientListService, AccountService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

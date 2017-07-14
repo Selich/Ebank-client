@@ -1,3 +1,27 @@
-<p>
-  exchange works!
-</p>
+<h1 class="page-header">Exchange Rates</h1>
+<form class="  form">
+    <input type="text" class="form-control" placeholder="Search...">
+</form>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>jmbg</th>
+        <th>password</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let client of clients" (click)="onSelect(client)">
+      <tr>
+        <td>{{client.id}}</td>
+        <td>{{client.firstName}}</td>
+        <td>{{client.lastName}}</td>
+        <td>{{client.jmbg}}</td>
+        <td>{{client.password}}</td>
+        <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash "></span></button>
+      </tr>
+    </tbody>
+  </table>
+</div>

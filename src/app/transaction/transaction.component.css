@@ -1,0 +1,31 @@
+.account {
+  background: #eee;
+  padding: 10px;
+  cursor: pointer;
+
+}
+
+.account:hover{
+  background: #ede;
+
+}
+.selected{
+    background: #ddd; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#ddd, #eee); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#ddd, #eee); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ddd, #eee); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ddd, #eee);
+}
+
+a{
+  text-decoration: none;
+}
+
+.grid{
+  padding-bottom: 10px;
+}
+
+
+.bigInput{
+  height:40px;
+}

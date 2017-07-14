@@ -16,6 +16,7 @@ export class ClientCreateComponent implements OnInit {
   firstName:string = '';
   lastName:string = '';
   password:string = '';
+  jmbg:string
 
 
 

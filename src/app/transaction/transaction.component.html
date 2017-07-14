@@ -1,3 +1,55 @@
-<p>
-  transaction works!
-</p>
+<h1 class="page-header">Transaction</h1>
+<form class="" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+  <div class="container">
+    <div class="row">
+
+
+
+      <h3>Accounts</h3>
+
+      <div class="grid grid-pad container-fluid col-lg-10">
+
+
+        <div class="col-sm-3  account" *ngFor="let account of accounts" (click)="onSelect(account)" [class.selected]="account === selectedAccount">
+          <h5>Account: {{account.accountNumber}}</h5>
+          <h5>Balance: {{account.accountBalance}}</h5>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="selectedAccount">
+        <div class="container col-lg-10">
+
+
+          <div class="col-lg-6">
+            <fieldset>
+              <legend>Sender Details:</legend>
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label for="">Name:</label>
+                  <input type="text" formControlName="lastName" class="form-control" id="" placeholder="">
+                <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['firstName'].touched">This is required</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="">Address:</label>
+                  <input type="text" formControlName="lastName" class="form-control" id="" placeholder="">
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="">Sender Description:</label>
+                <textarea name="describe" formControlName="senderDescription" class="form-control" rows="5" cols="80"></textarea>
+                <div class="alert" *ngIf="!rForm.controls['firstName'].valid && rForm.controls['firstName'].touched">This is required</div>
+              </div>
+            </div>
+          </div>
+
+
+
+            <input type="submit" class="btn btn-primary btn-block " name="" value="Submit" [disabled]="!rForm.valid">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
