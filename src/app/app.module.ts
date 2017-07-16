@@ -22,6 +22,9 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
 import { TransactionComponent } from './transaction/transaction.component';
 import { MainComponent } from './main/main.component';
 
+// filters
+import { ClientListFilter } from './client-list/client-list-filter';
+
 export const appRoutes: Routes = [
   {
     path: 'dashboard' ,
@@ -66,7 +69,8 @@ export const appRoutes: Routes = [
     ClientCreateComponent,
     TransactionComponent,
     ExchangeComponent,
-    AccountDetailComponent
+    AccountDetailComponent,
+    ClientListFilter
   ],
   imports: [
     BrowserModule,

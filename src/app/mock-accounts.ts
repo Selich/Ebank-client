@@ -1,4 +1,4 @@
-import { Account, Client } from './models';
+import { Account, Client, Address } from './models';
 
 export const ACCOUNTS: Account[] = [
   { accountType: "transaction", accountNumber: "1231321", accountBalance: 13000},
@@ -31,6 +31,10 @@ export const ACCOUNTS: Account[] = [
 //   country: string;
 // }
 export const CLIENTS: Client[] = [
-  { id: 1, firstName: "Nikola", lastName: "Selic", email: "nikla@", password: "pass", jmbg: "144342424",
-    address: { street: "poenkareva", city: "belgrade", country : "serbia"}},
-]
+  { id: 1, firstName: "Nikola", lastName: "Selic", email: "nikla@gmail.com", password: "pass", jmbg: "144342424",
+    address: {street: "Poenkareova 22", city: "Paracin", country: "Serbia"}},
+  { id: 2, firstName: "Nikola", lastName: "Selic", email: "nikla@gmail.com", password: "pass", jmbg: "144342424",
+    address: {street: "Poenkareova 22", city: "Paracin", country: "Serbia"}},
+  { id: 3, firstName: "Nikola", lastName: "Selic", email: "nikla@gmail.com", password: "pass", jmbg: "144342424",
+    address: {street: "Poenkareova 22", city: "Paracin", country: "Serbia"}},
+];
