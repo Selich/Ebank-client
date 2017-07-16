@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientListService } from './client-list.service';
+import { ClientListService } from '../services/client-list.service';
 
 import { Client } from './../models';
 
@@ -15,8 +15,10 @@ export class ClientListComponent implements OnInit {
   constructor(private clientListService : ClientListService) { }
 
   ngOnInit() {
-    this.clientListService.getClients()
-    .subscribe(resClientData => this.clients = resClientData);
+    this.clientListService.getFake()
+    .then(clients => this.clients = clients);
+   //  this.clientListService.getClients()
+   //  .subscribe(resClientData => this.clients = resClientData);
   }
 
 }

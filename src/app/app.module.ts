@@ -5,8 +5,9 @@ import { HttpModule } from '@angular/http';
 
 import { RouterModule, Routes } from '@angular/router';
 
-import { ClientListService } from './client-list/client-list.service'
 import { AccountService } from './services/account.service';
+import { ClientListService } from './services/client-list.service';
+import { TransactionListService } from './services/transaction-list.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -76,7 +77,7 @@ export const appRoutes: Routes = [
       appRoutes
     )
   ],
-  providers: [ ClientListService, AccountService ],
+  providers: [ ClientListService, TransactionListService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

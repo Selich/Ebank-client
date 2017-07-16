@@ -5,6 +5,7 @@ export class Client {
   email: string;
   password: string;
   jmbg: string;
+  address : Address;
 }
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TransactionListService } from '../services/transaction-list.service';
+
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
