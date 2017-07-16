@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ClientListService } from './client-list/client-list.service'
-import { AccountService } from './transaction/account.service';
+import { AccountService } from './services/account.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +17,7 @@ import { AccountListComponent } from './account-list/account-list.component';
 import { ClientSearchComponent } from './client-search/client-search.component';
 import { ClientCreateComponent } from './client-create/client-create.component';
 import { ExchangeComponent } from './exchange/exchange.component';
+import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { MainComponent } from './main/main.component';
 
@@ -45,6 +46,7 @@ export const appRoutes: Routes = [
     component: MainComponent,
     children: [
       { path: '', redirectTo: 'accounts',pathMatch: 'full'},
+      { path: 'accountDetail', component: AccountDetailComponent},
       { path: 'transaction', component: TransactionComponent},
       { path: 'exchangeRates', component: ExchangeComponent},
     ]
@@ -62,7 +64,8 @@ export const appRoutes: Routes = [
     ClientSearchComponent,
     ClientCreateComponent,
     TransactionComponent,
-    ExchangeComponent
+    ExchangeComponent,
+    AccountDetailComponent
   ],
   imports: [
     BrowserModule,

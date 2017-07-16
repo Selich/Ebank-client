@@ -1,0 +1,30 @@
+<h2 class="page-header">Transaction</h2>
+<form class="" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+  <div class="container">
+    <div class="row">
+
+
+
+      <h3>Accounts</h3>
+
+      <div class="container-fluid col-lg-4">
+
+
+        <ul class="accountList">
+        <li *ngFor="let account of accounts" class="accountList"(click)="onSelect(account)" [class.selected]="account === selectedAccount">
+          <h5>{{account.accountNumber}}</h5>
+        </li>
+        </ul>
+      </div>
+
+      <div class="row " *ngIf="selectedAccount">
+        <div class="container col-lg-6">
+          <h3>Balance: {{selectedAccount.accountBalance}}</h3>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</form>

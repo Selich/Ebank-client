@@ -6,15 +6,16 @@
 }
 
 .account:hover{
-  background: #ede;
-
-}
-.selected{
     background: #ddd; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(#ddd, #eee); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#ddd, #eee); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#ddd, #eee); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#ddd, #eee);
+  transition: 0.2s;
+
+}
+.selected{
+  background: #ddd;
 }
 
 a{
@@ -28,4 +29,8 @@ a{
 
 .bigInput{
   height:40px;
+}
+
+.borders{
+  box-shadow: 0 0 1px black;
 }
