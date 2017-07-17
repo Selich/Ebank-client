@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientListService } from '../services/client-list.service';
 import { ClientListFilter } from './client-list-filter';
-
 import { Client } from './../models';
 
 @Component({

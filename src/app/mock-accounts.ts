@@ -1,4 +1,4 @@
-import { Account, Client, Address } from './models';
+import { Account, Client, Address, Transaction } from './models';
 
 export const ACCOUNTS: Account[] = [
   { accountType: "transaction", accountNumber: "1231321", accountBalance: 13000},
@@ -38,3 +38,33 @@ export const CLIENTS: Client[] = [
   { id: 3, firstName: "Nikola", lastName: "Selic", email: "nikla@gmail.com", password: "pass", jmbg: "144342424",
     address: {street: "Poenkareova 22", city: "Paracin", country: "Serbia"}},
 ];
+
+
+
+
+// export class Transaction{
+//    id: number;
+//    senderAccount: Account;
+//    senderDescription: string;
+//    receiverAccount: Account;
+//    currency: string;
+//    transactionDate: string;
+//    amountTransferred: number;
+// }
+
+export const TRANSACTIONS: Transaction[] = [
+   { id: 1, senderAccount:
+  // { accountType: "transaction", accountNumber: "1231321", accountBalance: 13000},
+    ACCOUNTS[0],
+    senderDescription:"asdfasfd", receiverAccount:
+    ACCOUNTS[1],
+    currency: "eu", transactionDate: "12/32/4144", amountTransferred: 1240},
+   { id: 1, senderAccount:
+  // { accountType: "transaction", accountNumber: "1231321", accountBalance: 13000},
+    ACCOUNTS[0],
+    senderDescription:"asdfasfd", receiverAccount:
+    ACCOUNTS[1],
+    currency: "eu", transactionDate: "12/32/4144", amountTransferred: 1240}
+
+
+]

@@ -4,25 +4,37 @@
 </form>
 <div class="table-responsive">
   <table class="table table-striped">
-    <thead>
+    <thead class="thead-inverse">
       <tr>
         <th>#</th>
-        <th>firstName</th>
-        <th>lastName</th>
-        <th>jmbg</th>
-        <th>password</th>
+        <th>Sender</th>
+        <th></th>
+        <th>Amount</th>
+        <th>Currency</th>
+        <th></th>
+        <th>Receiver</th>
       </tr>
     </thead>
-    <tbody *ngFor="let client of clients" (click)="onSelect(client)">
+<!-- export class Transaction{
+   id: number;
+   senderAccount: Account;
+   senderDescription: string;
+   receiverAccount: Account;
+   currency: string;
+   transactionDate: string;
+   amountTransferred: number;
+} -->
+
+    <tbody *ngFor="let transaction of transactions" (click)="onSelect(transaction)">
       <tr>
-        <td>{{client.id}}</td>
-        <td>{{client.firstName}}</td>
-        <td>{{client.lastName}}</td>
-        <td>{{client.jmbg}}</td>
-        <td>{{client.email}}</td>
-        <td>{{client.password}}</td>
-        <td>{{client.address}}</td>
-        <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash "></span></button>
+        <td>{{transaction.id}}</td>
+        <td>{{transaction.senderAccount.accountNumber}}</td>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <td>{{transaction.amountTransferred}}</td>
+        <td>{{transaction.currency}}</td>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <td>
+        {{transaction.receiverAccount.accountNumber}}</td>
       </tr>
     </tbody>
   </table>
