@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ChartsModule } from 'ng2-charts';
 
 import { RouterModule, Routes } from '@angular/router';
 
 import { AccountService } from './services/account.service';
 import { ClientListService } from './services/client-list.service';
 import { TransactionListService } from './services/transaction-list.service';
+import { ClientCreateService } from './services/client-create.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -15,7 +17,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { AccountListComponent } from './account-list/account-list.component';
-import { ClientSearchComponent } from './client-search/client-search.component';
 import { ClientCreateComponent } from './client-create/client-create.component';
 import { ExchangeComponent } from './exchange/exchange.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
@@ -65,23 +66,28 @@ export const appRoutes: Routes = [
     ClientListComponent,
     TransactionListComponent,
     AccountListComponent,
-    ClientSearchComponent,
     ClientCreateComponent,
     TransactionComponent,
     ExchangeComponent,
     AccountDetailComponent,
-    ClientListFilter
+    ClientListFilter,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
     RouterModule.forRoot(
       appRoutes
     )
   ],
-  providers: [ ClientListService, TransactionListService, AccountService],
+  providers: [
+    ClientListService,
+    TransactionListService,
+    AccountService,
+    ClientCreateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
