@@ -3,13 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
-
 import { RouterModule, Routes } from '@angular/router';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdButtonModule,
+         MdDialogModule,
+         } from '@angular/material';
+
 import { AccountService } from './services/account.service';
-import { ClientListService } from './services/client-list.service';
+import { ClientService } from './services/client.service';
 import { TransactionListService } from './services/transaction-list.service';
-import { ClientCreateService } from './services/client-create.service';
+import { ClientUpdateService } from './services/client-update.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -25,6 +29,7 @@ import { MainComponent } from './main/main.component';
 
 // filters
 import { ClientListFilter } from './client-list/client-list-filter';
+import { ClientUpdateComponent } from './client-update/client-update.component';
 
 export const appRoutes: Routes = [
   {
@@ -58,6 +63,10 @@ export const appRoutes: Routes = [
   },
 ];
 @NgModule({
+   entryComponents: [
+      ClientUpdateComponent
+
+   ],
   declarations: [
     AppComponent,
     MainComponent,
@@ -71,6 +80,7 @@ export const appRoutes: Routes = [
     ExchangeComponent,
     AccountDetailComponent,
     ClientListFilter,
+    ClientUpdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,15 +88,21 @@ export const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    BrowserAnimationsModule,
+   //  material
+    MdButtonModule,
+    MdDialogModule,
+   //  router
     RouterModule.forRoot(
       appRoutes
     )
+
   ],
   providers: [
-    ClientListService,
+    ClientService,
     TransactionListService,
     AccountService,
-    ClientCreateService
+    ClientUpdateService
   ],
   bootstrap: [AppComponent]
 })

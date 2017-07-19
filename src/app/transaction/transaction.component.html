@@ -1,8 +1,7 @@
 <h2 class="page-header">Transaction</h2>
-<form class="" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+<form class="" [formGroup]="rForm" (ngSubmit)="save(rForm.value, rForm.valid)">
   <div class="container">
     <div class="row">
-
 
 
       <h3>Accounts</h3>
@@ -30,7 +29,7 @@
               </div>
               <div class="col-md-1">
                 <label for="">Currency:</label>
-                <input type="text" formControlName="lastName" class="form-control" id="" placeholder="">
+                <option *ngFor="let currencySymbol of currencySymbols" [value]="currencySymbol">{{currencySymbol}}</option>
               </div>
               <div class="col-md-3">
                 <label for="">Value:</label>
@@ -102,7 +101,7 @@
               </div>
               <div class="col-md-4">
                 <label for=""></label>
-                <input type="submit" class="btn btn-primary btn-block " name="" value="Submit" [disabled]="!rForm.valid">
+                <input type="submit" class="btn btn-success btn-block " name="" value="Submit" [disabled]="!rForm.valid">
               </div>
             </div>
           </div>
