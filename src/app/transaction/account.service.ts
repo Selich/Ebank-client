@@ -22,9 +22,6 @@ export class AccountService{
   getFake(): Promise<Account[]>{
     return Promise.resolve(ACCOUNTS);
   }
-  getFakeAccount(): Promise<Account[]>{
-    return Promise.resolve(ACCOUNTS);
-  }
 
 
 
