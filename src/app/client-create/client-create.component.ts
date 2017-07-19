@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder , FormGroup, Validators } from '@angular/forms';
 
-import { Client } from '../models';
+import { Client, Role } from '../models';
 
 @Component({
   selector: 'app-client-create',
@@ -11,18 +11,28 @@ import { Client } from '../models';
 export class ClientCreateComponent implements OnInit {
 
   // todo client model
+
   rForm: FormGroup;
   post: any;
   firstName:string = '';
   lastName:string = '';
   password:string = '';
   jmbg:string
+  client: Client;
+  roles: Role[] = [
+    { id: 1,name: 'client'} ,
+    { id: 2,name: 'admin'} ,
+ ]
 
 
 
   constructor(private formBuilder: FormBuilder) {
+     this.client= new Client();
 
-    this.rForm = formBuilder.group({
+  }
+
+  ngOnInit() {
+    this.rForm = this.formBuilder.group({
       'firstName': [null, Validators.required],
       'lastName': [null, Validators.required],
       'password': [null, Validators.compose([Validators.required,
@@ -30,10 +40,7 @@ export class ClientCreateComponent implements OnInit {
                                            ])],
       'validate': ''
     });
-
-
   }
-
 
 
   addPost(post){
@@ -43,7 +50,5 @@ export class ClientCreateComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-  }
 
 }

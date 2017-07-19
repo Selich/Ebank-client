@@ -6,6 +6,12 @@ export class Client {
   password: string;
   jmbg: string;
   address : Address;
+  role: Role;
+}
+
+export class Role {
+   id: number;
+   name: string;
 }
 
 export class Account{
@@ -33,5 +39,10 @@ export class Transaction{
 }
 
 export class Currency{
-
+   id: number;
+   countryName: string;
+   currencySymbol: string;
+   worthFor: number;
+   buyingRate: number;
+   sellingRate: number;
 }
