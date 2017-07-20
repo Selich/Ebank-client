@@ -1,5 +1,5 @@
 import { Injectable, Pipe, PipeTransform }  from '@angular/core';
-import { ClientListService } from '../services/client-list.service';
+import { ClientService } from '../services/client.service';
 
 import { Client } from '../models';
 

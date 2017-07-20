@@ -18,7 +18,7 @@ export class Account{
   accountType: string;
   accountNumber: string;
   accountBalance: number;
-  // availableBalance: number;
+  availableBalance: number;
 }
 
 export class Address{

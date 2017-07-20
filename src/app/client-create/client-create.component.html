@@ -1,29 +1,19 @@
 <h2 class="page-header">Create Client</h2>
-<form class="" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+<form name="form" [formFroup]="clientForm" (ngSubmit)="onSubmit()"  novalidate>
   <div class="container">
     <div class="row">
 
-          <div class="container col-lg-10 padding-bottom">
-            <div class="form-group">
-              <div class="col-md-6">
-                <label for="">First Name:</label>
-                <input type="text"
-                       formControlName="firstName"
-                       [(ngModel)]="client.firstName"
-                       class="form-control"
-                       ngControl='firstName'
-                       >
-              </div>
-              <div class="col-md-6">
-                <label for="">Last Name:</label>
-                <input type="text"
-                       formControlName="lastName"
-                       [(ngModel)]="client.lastName"
-                       class="form-control"
-                       ngControl='lastName'
-                       >
-              </div>
-              <!-- <div class="col-md-4">
+      <div class="container col-lg-10 padding-bottom">
+        <div class="col-md-6 form-group">
+          <label for="">First Name:</label>
+          <input type="text" formControlName="firstName" [(ngModel)]="client.firstName" class="form-control" ngControl='firstName'>
+        </div>
+
+        <div class="col-md-6 form-group">
+          <label for="">Last Name:</label>
+          <input type="text" formControlName="lastName" [(ngModel)]="client.lastName" class="form-control" ngControl='lastName'>
+        </div>
+        <!-- <div class="col-md-4">
                 <label for="">Date of Birth:</label>
                 <input type="date"
                        formControlName="dOB"
@@ -32,43 +22,27 @@
                        ngControl='lastName'
                        >
               </div> -->
-            </div>
+      </div>
+
+      <div class="container col-lg-10 padding-bottom">
+        <div class="form-group">
+          <div class="col-md-4">
+            <label for="">Street:</label>
+            <input type="text" formControlName="street" [(ngModel)]="client.address.street" class="form-control" ngControl='street'>
           </div>
-
-          <div class="container col-lg-10 padding-bottom">
-            <div class="form-group">
-              <div class="col-md-4">
-                <label for="">Street:</label>
-                <input type="text"
-                       formControlName="street"
-                       [(ngModel)]="client.address.street"
-                       class="form-control"
-                       ngControl='street'
-                       >
-              </div>
-              <div class="col-md-4">
-                <label for="">City:</label>
-                <input type="text"
-                       formControlName="city"
-                       [(ngModel)]="client.address.city"
-                       class="form-control"
-                       ngControl='city'
-                       >
-              </div>
-              <div class="col-md-4">
-                <label for="">Country:</label>
-                <input type="text"
-                       formControlName="country"
-                       [(ngModel)]="client.address.country"
-                       class="form-control"
-                       ngControl='country'
-                       >
-              </div>
-            </div>
+          <div class="col-md-4">
+            <label for="">City:</label>
+            <input type="text" formControlName="city" [(ngModel)]="client.address.city" class="form-control" ngControl='city'>
           </div>
+          <div class="col-md-4">
+            <label for="">Country:</label>
+            <input type="text" formControlName="country" [(ngModel)]="client.address.country" class="form-control" ngControl='country'>
+          </div>
+        </div>
+      </div>
 
 
-<!-- export class Client {
+      <!-- export class Client {
   id: number;
   firstName: string;
   lastName: string;
@@ -78,52 +52,37 @@
   address : Address;
 } -->
 
-          <div class="container col-lg-10">
-            <div class="form-group">
-              <div class="col-md-6">
-                <label for="">Email:</label>
-                <input type="text"
-                       formControlName="email"
-                       [(ngModel)]="client.email"
-                       class="form-control"
-                       ngControl='email'
-                       >
-              </div>
-              <div class="col-md-6">
-                <label for="">Jmbg:</label>
-                <input type="text"
-                       formControlName="jmbg"
-                       [(ngModel)]="client.jmbg"
-                       class="form-control"
-                       ngControl='jmbg'
-                       >
-              </div>
-            </div>
+      <div class="container col-lg-10">
+        <div class="form-group">
+          <div class="col-md-6">
+            <label for="">Email:</label>
+            <input type="text" formControlName="email" [(ngModel)]="client.email" class="form-control" ngControl='email'>
           </div>
-          <div class="container col-lg-10">
-            <div class="form-group">
-              <div class="col-md-4">
-                <label for="">Password:</label>
-                <input type="password"
-                       formControlName="password"
-                       [(ngModel)]="client.password"
-                       class="form-control"
-                       ngControl='password'
-                       >
-              </div>
-              <div class="col-md-2" >
-                 <label>Role</label>
-                 <select class="" [(ngModel)]="client.role"name="role">
+          <div class="col-md-6">
+            <label for="">Jmbg:</label>
+            <input type="text" formControlName="jmbg" [(ngModel)]="client.jmbg" class="form-control" ngControl='jmbg'>
+          </div>
+        </div>
+      </div>
+      <div class="container col-lg-10">
+        <div class="form-group">
+          <div class="col-md-4">
+            <label for="">Password:</label>
+            <input type="password" formControlName="password" [(ngModel)]="client.password" class="form-control" ngControl='password'>
+          </div>
+          <div class="col-md-2">
+            <label>Role</label>
+            <select class="" [(ngModel)]="client.role" name="role">
                     <option [value]="role.value" *ngFor="let role of roles"></option>
                     {{roles.display}}
                  </select>
-              </div>
-              <div class="col-md-6">
-                <label for=""></label>
-                <input type="submit" class="btn btn-primary btn-block " name="" value="Submit" [disabled]="!rForm.valid">
-              </div>
-            </div>
           </div>
+          <div class="col-md-6">
+            <label for=""></label>
+            <input type="submit" [disabled]="clientForm.pristine" class="btn btn-primary btn-block " name="" value="Submit">
+          </div>
+        </div>
+      </div>
 
 
     </div>

@@ -30,6 +30,7 @@ import { MainComponent } from './main/main.component';
 // filters
 import { ClientListFilter } from './client-list/client-list-filter';
 import { ClientUpdateComponent } from './client-update/client-update.component';
+import { ClientDetailsComponent } from './client-details/client-details.component';
 
 export const appRoutes: Routes = [
   {
@@ -64,7 +65,8 @@ export const appRoutes: Routes = [
 ];
 @NgModule({
    entryComponents: [
-      ClientUpdateComponent
+      ClientUpdateComponent,
+      ClientDetailsComponent
 
    ],
   declarations: [
@@ -81,6 +83,7 @@ export const appRoutes: Routes = [
     AccountDetailComponent,
     ClientListFilter,
     ClientUpdateComponent,
+    ClientDetailsComponent,
   ],
   imports: [
     BrowserModule,

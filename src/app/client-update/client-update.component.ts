@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef} from '@angular/material';
 
+import { Client, Account} from '../models';
+import { ClientService } from '../services/client.service';
+import { AccountService } from '../services/account.service';
+
 @Component({
   selector: 'app-client-update',
   templateUrl: './client-update.component.html',
@@ -8,9 +12,17 @@ import { MdDialog, MdDialogRef} from '@angular/material';
 })
 export class ClientUpdateComponent implements OnInit {
 
-  constructor(public dialogRef: MdDialogRef<ClientUpdateComponent>) { }
+  accounts : Account[];
+
+  constructor(public dialogRef: MdDialogRef<ClientUpdateComponent>,
+              public accountService: AccountService) { }
 
   ngOnInit() {
+  }
+
+
+  getFakeAccounts() {
+    this.accountService.getFake().then(accounts => this.accounts = accounts)
   }
 
 }
