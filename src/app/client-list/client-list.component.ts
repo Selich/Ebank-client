@@ -1,11 +1,14 @@
+import { ClientDetailsComponent } from './../client-details/client-details.component';
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../services/client.service';
 import { ClientListFilter } from './client-list-filter';
+
 import { MdDialog, MdDialogRef} from '@angular/material';
 import { Client } from './../models';
+import { Router } from '@angular/router';
 
 import { ClientUpdateComponent } from '../client-update/client-update.component';
-import { ClientDetailsComponent } from '../client-details/client-details.component';
+
+import { ClientService } from '../services/client.service';
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
@@ -18,31 +21,27 @@ export class ClientListComponent implements OnInit {
   selectedClient: Client;
 
   constructor(private clientService: ClientService,
-    public dialog: MdDialog
+    private router: Router,
   ) { }
 
   ngOnInit() {
     this.getFakeClients();
   }
 
-  updateClient(client) {
-    let updateClient = this.dialog.open(ClientUpdateComponent);
-    updateClient.afterClosed().subscribe(client => {
-      this.client = client;
-    })
-  }
   deleteClient(id: number, index: number) {
     // this.clientService.deleteClient(id).subscribe(response => {
     this.clients.splice(index, 1);
     alert(id);
   }
 
-  showDetails(client:Client){
+  onSelect(client) {
+    this.selectedClient = client;
   }
 
-  getClients() {
-    this.clientService.getClients().then(clients => this.clients = clients)
-  }
+  // getClients() {
+  //   // this.clientService.getClients()
+  //   //   .subscribe(clients => this.clients = clients);
+  // }
   getFakeClients() {
     this.clientService.getFake().then(clients => this.clients = clients)
   }

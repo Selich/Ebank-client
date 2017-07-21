@@ -1,23 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { AccountService } from './account.service';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  AccountService
+} from './account.service';
 
 
-import { Account } from '../models';
+import {
+  Account
+} from '../models';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
+
 export class AccountComponent implements OnInit {
 
-  accounts : Account[] = [];
+  accounts: Account[] = [];
 
-  constructor(private accountService : AccountService) { }
+  constructor(private accountService: AccountService) {}
 
   ngOnInit() {
     this.accountService.getFake()
-    .then(accounts => this.accounts = accounts.slice(1,5));
+      .then(accounts => this.accounts = accounts.slice(1, 5));
     // .subscribe(resAccountData => this.accounts = resAccountData.slice(1,5));
   }
 

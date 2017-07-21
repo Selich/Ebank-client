@@ -1,21 +1,20 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { Client } from '../models';
 import { CLIENTS} from '../mock-accounts';
 
-import "rxjs";
-import {Observable} from "rxjs";
 import 'rxjs/add/operator/map';
 @Injectable()
 export class ClientService {
 
-   url: string = "http://localhost:8080/api/v1/ebank";
+  // url: string = "http://localhost:8080/api/v1/ebank";
 
   constructor(private http: Http) {
   }
 
-  createClient(client : Client){
+  createClient(client: Client) {
 
   }
 
@@ -25,13 +24,13 @@ export class ClientService {
 
 
   getClients() {
-    return this.http.get(this.url + "/clients")
-      .map(data => data.json()).toPromise();
+    return this.http.get('../mock-accounts.ts')
+      .map((res: Response) => <Client[]>res.json().client);
   }
 
-  getClient(client: Client) {
-    return this.http.get("/clients/" + client.id)
-      .map(data => data.json()).toPromise();
+  getClient(id: number): Observable<Client> {
+    return this.getClients()
+      .map(clients => clients.find(client => client.id === id));
   }
   updateClient(client: Client) {
     return this.http.put("/clients/" + client.id, client)

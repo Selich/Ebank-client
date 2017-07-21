@@ -1,9 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { AccountService } from '../services/account.service';
-import { TransactionService } from '../services/transaction.service';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators
+} from '@angular/forms';
+import {
+  AccountService
+} from '../services/account.service';
+import {
+  TransactionService
+} from '../services/transaction.service';
 
-import { Account, Client, Transaction, Currency } from '../models';
+import {
+  Account,
+  Client,
+  Transaction,
+  Currency
+} from '../models';
 
 
 @Component({
@@ -13,13 +30,7 @@ import { Account, Client, Transaction, Currency } from '../models';
 })
 export class TransactionComponent implements OnInit {
   // TODO: sredi za transaction
-  rForm: FormGroup;
-  submitted: boolean;
-  events: any[] = [];
-  post: any;
-  firstName: string = '';
-  lastName: string = '';
-  password: string = '';
+  transactionForm: FormGroup;
   accounts: Account[] = [];
   account: Account;
   currency: Currency;
@@ -28,61 +39,48 @@ export class TransactionComponent implements OnInit {
   selectedAccount: Account;
 
 
-  constructor(private formBuilder: FormBuilder,
-    private accountService: AccountService) {
+  constructor(
+    private fb: FormBuilder,
+    private accountService: AccountService) {}
 
-  }
-
-  save(model: Transaction , isValid: boolean){
-     this.submitted = true;
- }
-  addPost(post) {
-    this.password = post.password;
-   //  this.currency.currencySymbol = post.currency.currencySymbol;
-    this.account.accountBalance = post.account.accountBalance;
-    this.account.accountNumber = post.account.accountBalance;
-    this.account.accountBalance = post.account.accountBalance;
-  }
   ngOnInit() {
     this.accountService.getFake()
       .then(accounts => this.accounts = accounts);
     // .subscribe(resAccountData => this.accounts = resAccountData.slice(1,5));
-
-
-
+    this.form();
   }
 
-      // 'firstName': [null, Validators.required],
-      // 'lastName': [null, Validators.required],
-      // 'password': [null, Validators.compose([Validators.required,
-      //   Validators.minLength(5)
-      // ])],
-      // 'account': [null, Validators.required]
-// export class Transaction{
-//    id: number;
-//    senderAccount: Account;
-//    senderDescription: string;
-//    receiverAccount: Account;
-//    currency: Currency;
-//    transactionDate: string;
-//    amountTransferred: number;
-// }
-   // form(){
-   //  this.rForm = new FormGroup({
-   //    name: new FormControl('', [<any>Validators.required, <any>Validators.minLength(5)]),
-   //    amountTransferred: new FormControl('', [<any>Validators.required]),
-   //
-   // });
-   //
-   // }
-
-
-
-
-
+  form() {
+    this.transactionForm = this.fb.group({
+      senderName: ['', Validators.required],
+      senderAccountNumber: ['', Validators.required],
+      senderDescription: ['', Validators.required],
+      senderAddress: this.fb.group({
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+        country: ['', Validators.required],
+      }),
+      recieverName: ['', Validators.required],
+      recieverAccountNumber: ['', Validators.required],
+      recieverAddress: this.fb.group({
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+        country: ['', Validators.required],
+      }),
+      paymentCode: ['', Validators.required],
+      currency: ['', Validators.required],
+      value: ['', Validators.required],
+      model: ['', Validators.required],
+      referenceNumber: ['', Validators.required],
+    })
+  }
   onSelect(account: Account) {
     this.selectedAccount = account;
   }
+  onSubmit(transaction: Transaction) {
+    console.log(transaction);
+  }
+
 
 
 

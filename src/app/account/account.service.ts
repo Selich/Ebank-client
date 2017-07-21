@@ -7,16 +7,16 @@ import { ACCOUNTS } from './../mock-accounts';
 
 import 'rxjs/add/operator/map';
 @Injectable()
-export class AccountService{
+export class AccountService {
 
   constructor(private http: Http) {
   }
 
 
 
-  getAccounts(){
-    return this.http.get("http://localhost:8080/api/v1/user/accounts")
-    .map((response:Response) => response.json());
+  getAccounts() {
+    return this.http.get('http://localhost:8080/api/v1/user/accounts')
+    .map((response: Response) => response.json());
   }
 
   getFake(): Promise<Account[]>{

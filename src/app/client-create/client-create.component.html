@@ -1,91 +1,109 @@
 <h2 class="page-header">Create Client</h2>
-<form name="form" [formFroup]="clientForm" (ngSubmit)="onSubmit()"  novalidate>
+<form name="form" [formGroup]="clientForm" (ngSubmit)="onSubmit(clientForm.value)" novalidate>
   <div class="container">
     <div class="row">
 
-      <div class="container col-lg-10 padding-bottom">
+      <!--Name  -->
+      <div class="container col-lg-12 padding-bottom">
         <div class="col-md-6 form-group">
           <label for="">First Name:</label>
-          <input type="text" formControlName="firstName" [(ngModel)]="client.firstName" class="form-control" ngControl='firstName'>
+          <input type="text" formControlName="firstName" [(ngModel)]="firstName" class="form-control" ngControl='firstName'>
         </div>
-
         <div class="col-md-6 form-group">
           <label for="">Last Name:</label>
-          <input type="text" formControlName="lastName" [(ngModel)]="client.lastName" class="form-control" ngControl='lastName'>
+          <input type="text" formControlName="lastName" [(ngModel)]="lastName" class="form-control" ngControl='lastName'>
         </div>
-        <!-- <div class="col-md-4">
-                <label for="">Date of Birth:</label>
-                <input type="date"
-                       formControlName="dOB"
-                       [(ngModel)]="client.dOB"
-                       class="form-control"
-                       ngControl='lastName'
-                       >
-              </div> -->
       </div>
-
-      <div class="container col-lg-10 padding-bottom">
-        <div class="form-group">
+      <!--Address  -->
+      <div class="container col-lg-12 padding-bottom">
+        <div class="form-group" formGroupName="address">
           <div class="col-md-4">
             <label for="">Street:</label>
-            <input type="text" formControlName="street" [(ngModel)]="client.address.street" class="form-control" ngControl='street'>
+            <input type="text" formControlName="street" [(ngModel)]="street" class="form-control" ngControl='street'>
           </div>
           <div class="col-md-4">
             <label for="">City:</label>
-            <input type="text" formControlName="city" [(ngModel)]="client.address.city" class="form-control" ngControl='city'>
+            <input type="text" formControlName="city" [(ngModel)]="city" class="form-control" ngControl='city'>
           </div>
           <div class="col-md-4">
             <label for="">Country:</label>
-            <input type="text" formControlName="country" [(ngModel)]="client.address.country" class="form-control" ngControl='country'>
+            <input type="text" formControlName="country" [(ngModel)]="country" class="form-control" ngControl='country'>
           </div>
         </div>
       </div>
-
-
-      <!-- export class Client {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  jmbg: string;
-  address : Address;
-} -->
-
-      <div class="container col-lg-10">
-        <div class="form-group">
-          <div class="col-md-6">
-            <label for="">Email:</label>
-            <input type="text" formControlName="email" [(ngModel)]="client.email" class="form-control" ngControl='email'>
-          </div>
-          <div class="col-md-6">
-            <label for="">Jmbg:</label>
-            <input type="text" formControlName="jmbg" [(ngModel)]="client.jmbg" class="form-control" ngControl='jmbg'>
-          </div>
-        </div>
-      </div>
-      <div class="container col-lg-10">
+      <!--Email,Jmbg,Pass  -->
+      <div class="container col-lg-12">
         <div class="form-group">
           <div class="col-md-4">
+            <label for="">Email:</label>
+            <input type="text" formControlName="email" [(ngModel)]="email" class="form-control" ngControl='email'>
+          </div>
+          <div class="col-md-4">
+            <label for="">Jmbg:</label>
+            <input type="text" formControlName="jmbg" [(ngModel)]="jmbg" class="form-control" ngControl='jmbg'>
+          </div>
+          <div class="col-md-4">
             <label for="">Password:</label>
-            <input type="password" formControlName="password" [(ngModel)]="client.password" class="form-control" ngControl='password'>
-          </div>
-          <div class="col-md-2">
-            <label>Role</label>
-            <select class="" [(ngModel)]="client.role" name="role">
-                    <option [value]="role.value" *ngFor="let role of roles"></option>
-                    {{roles.display}}
-                 </select>
-          </div>
-          <div class="col-md-6">
-            <label for=""></label>
-            <input type="submit" [disabled]="clientForm.pristine" class="btn btn-primary btn-block " name="" value="Submit">
+            <input type="password" formControlName="password" [(ngModel)]="password" class="form-control" ngControl='password'>
           </div>
         </div>
       </div>
-
-
+      <div formArrayName="accounts">
+      <div class="container col-lg-12 padding-bottom">
+            <button (click)="addAccount()" class="btn btn-default pull-right btn-block" style="margin-top: 10px">Add account</button>
+        </div>
+        <div *ngFor="let accounts of clientForm.controls.accounts.controls; let i = index" >
+          <div class="panel-heading">
+            <div class="container col-lg-12">
+              <div class="form-group">
+                <h4>Account {{i + 1}}</h4>
+              </div>
+            </div>
+          </div>
+          <div [formGroupName]="i">
+            <div class="container col-lg-12 grey-bg" >
+              <div class="form-group">
+                <div class="col-md-2">
+                  <label for="">Bank:</label>
+                  <input type="text" formControlName="bankName"  class="form-control" ngControl='bankName'>
+                </div>
+                <div class="col-md-4">
+                  <label for="">AccountType:</label>
+                  <input type="text" formControlName="accountType"  class="form-control" ngControl='accountType'>
+                </div>
+                <div class="col-md-6">
+                  <label for="">AccountNumber:</label>
+                  <input type="text" formControlName="accountNumber" class="form-control" ngControl='accountNumber'>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="container col-lg-12 grey-bg ">
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label for="">AccountBalance:</label>
+                    <input type="text" formControlName="accountBalance" class="form-control" ngControl='accountBalance'>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="">AvailableBalance:</label>
+                    <input type="text" formControlName="availableBalance" class="form-control" ngControl='availableBalance'>
+                  </div>
+                  <div class="col-md-2">
+                    <label for=""></label>
+                <button *ngIf="i > 0" style="margin-top: 25px"(click)="removeAccount(i)" class="btn btn-danger btn-block btn-sm pull-right">Remove Account</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container col-lg-12">
+          <div class="col-md-12">
+            <label for=""></label>
+            <input type="submit" [disabled]="!clientForm.valid" class="btn btn-primary btn-block " name="" value="Submit">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
 </form>

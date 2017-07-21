@@ -37,8 +37,9 @@ export const appRoutes: Routes = [
     path: 'dashboard' ,
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'dashboard',pathMatch: 'full'},
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       { path: 'clients', component: ClientListComponent},
+      { path: 'client/:id', component: ClientDetailsComponent},
       { path: 'transactions', component: TransactionListComponent},
       { path: 'create', component: ClientCreateComponent},
     ]
@@ -56,7 +57,7 @@ export const appRoutes: Routes = [
     path: 'app' ,
     component: MainComponent,
     children: [
-      { path: '', redirectTo: 'accounts',pathMatch: 'full'},
+      { path: '', redirectTo: 'accounts', pathMatch: 'full'},
       { path: 'accountDetail', component: AccountDetailComponent},
       { path: 'transaction', component: TransactionComponent},
       { path: 'exchangeRates', component: ExchangeComponent},

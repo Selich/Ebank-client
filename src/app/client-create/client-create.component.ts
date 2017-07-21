@@ -1,7 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder , FormGroup, Validators } from '@angular/forms';
-
-import { Client, Role } from '../models';
+import {
+  ClientService
+} from './../services/client.service';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormArray,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import {
+  Client,
+  Address,
+  Bank
+} from '../models';
 
 @Component({
   selector: 'app-client-create',
@@ -9,45 +23,71 @@ import { Client, Role } from '../models';
   styleUrls: ['./client-create.component.css']
 })
 export class ClientCreateComponent implements OnInit {
-
-  // todo client model
-
-  rForm: FormGroup;
-  post: any;
-  firstName:string = '';
-  lastName:string = '';
-  password:string = '';
-  jmbg:string
+  public clientForm: FormGroup;
+  bank: Bank;
   client: Client;
-  roles: Role[] = [
-    { id: 1,name: 'client'} ,
-    { id: 2,name: 'admin'} ,
- ]
+  accounts: Account[];
+  address: Address;
 
 
+constructor(
+  private fb: FormBuilder,
+  private clientService: ClientService
+) {}
+ngOnInit() {
+  this.form();
+  this.addAccount();
+}
 
-  constructor(private formBuilder: FormBuilder) {
-     this.client= new Client();
+form() {
+  this.clientForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    address: this.fb.group({
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
 
-  }
+    }),
+    email: ['', Validators.required],
+    jmbg: ['', Validators.required],
+    password: ['', Validators.required],
+    accounts: this.fb.array([])
+  });
+}
 
-  ngOnInit() {
-    this.rForm = this.formBuilder.group({
-      'firstName': [null, Validators.required],
-      'lastName': [null, Validators.required],
-      'password': [null, Validators.compose([Validators.required,
-                                             Validators.minLength(5)
-                                           ])],
-      'validate': ''
-    });
-  }
+// export class Account {
+//   accountType: string;
+//   accountNumber: string;
+//   accountBalance: number;
+//   availableBalance: number;
+// }
+initAccounts() {
+  return this.fb.group({
+    accountType: ['', Validators.required],
+    bankName: ['', Validators.required],
+    accountNumber: ['', Validators.required],
+    accountBalance: ['', Validators.required],
+    availableBalance: ['', Validators.required],
+  })
+}
 
+addAccount() {
+  const control = < FormArray > this.clientForm.controls['accounts'];
+  const accCtrl = this.initAccounts();
+  control.push(this.initAccounts());
 
-  addPost(post){
-    this.firstName = post.firstName;
-    this.lastName      = post.lastName;
-    this.password      = post.password;
-  }
+}
+
+removeAccount(i: number) {
+  const control = < FormArray > this.clientForm.controls['accounts'];
+  control.removeAt(i);
+}
+
+onSubmit(client: Client) {
+  console.log(client);
+
+}
 
 
 
