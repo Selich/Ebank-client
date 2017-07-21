@@ -11,19 +11,12 @@ export class TransactionService {
   constructor(private http: Http) {
   }
 
-
-
-  getClients() {
-    return this.http.get("http://localhost:8080/api/v1/ebank/client/list")
-      .map((response: Response) => response.json());
-  }
-  // getFake(): Promise<TRANSACTION[]> {
-  //   return Promise.resolve(CLIENTS);
-  // }
-
-  getExchangeRate(){
+  getExchangeRate() {
      return Promise.resolve(EXCHANGERATES)
- }
+  }
+
+  
+
 
 
 }

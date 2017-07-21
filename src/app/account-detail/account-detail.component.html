@@ -12,6 +12,7 @@
 
         <ul class="accountList">
         <li *ngFor="let account of accounts" class="accountList"(click)="onSelect(account)" [class.selected]="account === selectedAccount">
+          <h5>{{account.bank.bankName}}</h5>
           <h5>{{account.accountNumber}}</h5>
         </li>
         </ul>
@@ -19,6 +20,8 @@
 
       <div class="row " *ngIf="selectedAccount">
         <div class="container col-lg-6">
+          <h5>Bank: {{account.bank.bankName}}</h5>
+          <h5>Number: {{selectedAccount.accountNumber}}</h5>
           <h3>Balance: {{selectedAccount.accountBalance}}</h3>
         </div>
 

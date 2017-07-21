@@ -14,12 +14,12 @@ export class AccountService{
 
 
 
-  getAccounts(){
-    return this.http.get("http://localhost:8080/api/v1/user/accounts")
+  getAccount(id: number) {
+    return this.http.get("3")
     .map((response:Response) => response.json());
   }
 
-  getFake(): Promise<Account[]>{
+  getFake(): Promise<Account[]> {
     return Promise.resolve(ACCOUNTS);
   }
 

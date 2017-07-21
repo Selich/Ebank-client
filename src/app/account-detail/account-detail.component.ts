@@ -15,16 +15,10 @@ export class AccountDetailComponent implements OnInit {
   // accountNumber: string;
   // accountBalance: number;
   // availableBalance: number;
-  public doughnutChartLabels:string[] = [
-    'Account Balance', 'Available Balance'
-  ]
 
-  public doughnutChartData : number[] = [
 
-  ]
-
-  accounts : Account[] = [];
-  account : Account;
+  accounts: Account[] = [];
+  account: Account;
   selectedAccount: Account;
   constructor(private accountService: AccountService) { }
 
@@ -36,7 +30,7 @@ export class AccountDetailComponent implements OnInit {
   }
 
 
-  onSelect(account: Account){
+  onSelect(account: Account) {
     this.selectedAccount = account;
   }
 }

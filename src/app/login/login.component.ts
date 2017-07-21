@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   client: Client;
-  // messages: Messages[] = [];
 
   constructor() { }
 
@@ -19,16 +18,5 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.client = new Client();
   }
-
-  // onSubmit(): void {
-  //   this.authService
-  //       .login(this.client)
-  //       .subscribe(isLoggedIn => {
-  //         if (isLoggedIn) {
-  //           if ()
-  //         }
-  //       })
-
-  // }
 
 }

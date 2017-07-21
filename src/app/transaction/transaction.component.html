@@ -1,5 +1,10 @@
 <h2 class="page-header">Transaction</h2>
-<form class="" [formGroup]="transactionForm" (ngSubmit)="onSubmit(transactionForm.value)">
+<form 
+     class="" 
+     [formGroup]="transactionForm"
+     (ngSubmit)="onSubmit(transactionForm.value)"
+     novalidate
+>
   <div class="container">
     <div class="row">
 
@@ -19,6 +24,10 @@
             <div class="col-md-6">
               <label for="">Sender Name:</label>
               <input type="text" formControlName="senderName" class="form-control" id="" placeholder="">
+              <small [hidden]="transactionForm.controls.senderName.valid || (transactionForm.controls.senderName.pristine && !submited)"
+                     class="text-danger">
+                    Required.
+              </small>
             </div>
             <div class="col-md-2">
               <label for="">Payment Code:</label>
@@ -29,10 +38,18 @@
               <select *ngFor="let currency of currencies" name="" id="">
                   <option>{{currency.currencySymbol}}</option>
                </select>
+              <small [hidden]="transactionForm.controls.currency.valid || (transactionForm.controls.currency.pristine && !submited)"
+                     class="text-danger">
+                    Required.
+              </small>
             </div>
             <div class="col-md-3">
               <label for="">Value:</label>
               <input type="text" formControlName="value" class="form-control" id="" placeholder="">
+              <small [hidden]="transactionForm.controls.value.valid || (transactionForm.controls.value.pristine && !submited)"
+                     class="text-danger">
+                     Must be a number.
+              </small>
             </div>
           </div>
         </div>
@@ -54,19 +71,37 @@
           </div>
           <div class="col-md-6">
             <label for="">Sender Account:</label>
-            <input type="text" formControlName="senderAccount" [(ngModel)]="selectedAccount.accountNumber" class="form-control" id="" [(ngModel)]="account.accountNumber"
-              placeholder="">{{account.accountNumber}}
-          </div>
+            <input type="text" 
+              formControlName="senderAccount" 
+              [ngModel]="selectedAccount.accountNumber" 
+              class="form-control" 
+              id="" 
+              placeholder="">          
+            </div>
+              <small [hidden]="transactionForm.controls.senderAccount.valid || (transactionForm.controls.senderAccount.pristine && !submited)"
+                     class="text-danger">
+                     Must be a number.
+              </small>
         </div>
         <div class="container col-lg-10">
           <div class="form-group">
             <div class="col-md-6">
               <label for="">Sender Description:</label>
-              <textarea name="describe" formControlName="senderDescription" class="form-control" rows="5" cols="80"></textarea>
+              <textarea 
+              name="describe" 
+              formControlName="senderDescription" 
+              class="form-control" 
+              rows="5" 
+              cols="80"></textarea>
             </div>
             <div class="col-md-6">
               <label for="">Reciever Account:</label>
               <input type="text" formControlName="recieverAccount" class="form-control" id="" placeholder="">
+              <small 
+              [hidden]="transactionForm.controls.recieverAccount.valid || (transactionForm.controls.recieverAccount.pristine && !submited)"
+              class="text-danger">
+              Required.
+              </small>
             </div>
           </div>
         </div>
@@ -103,7 +138,7 @@
           </div>
             <div class="col-md-4">
               <label for=""></label>
-              <input type="submit" class="btn btn-success btn-block " name="" value="Submit" [disabled]="!rForm.valid">
+              <input type="submit" class="btn btn-success btn-block " name="" value="Submit" [disabled]="!transactionForm.valid">
             </div>
         </div>
 

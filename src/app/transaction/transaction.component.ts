@@ -38,11 +38,14 @@ export class TransactionComponent implements OnInit {
   // get from db symbols only
   // currencySymbol =  this.currency.currencySymbol[];
   selectedAccount: Account;
+  transaction: Transaction;
 
 
   constructor(
     private fb: FormBuilder,
-    private accountService: AccountService) {}
+    private accountService: AccountService,
+    private transactionService: TransactionService
+  ) {}
 
   ngOnInit() {
     this.accountService.getFake()
@@ -54,7 +57,7 @@ export class TransactionComponent implements OnInit {
   form() {
     this.transactionForm = this.fb.group({
       senderName: ['', Validators.required],
-      senderAccount: ['', Validators.required, Validators.pattern('[0-9]')],
+      senderAccount: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
       senderDescription: [''],
       senderAddress: this.fb.group({
         street: ['', Validators.required],
@@ -62,7 +65,7 @@ export class TransactionComponent implements OnInit {
         country: ['', Validators.required],
       }),
       recieverName: ['', Validators.required],
-      recieverAccount: ['', Validators.required, Validators.pattern('[0-9]')],
+      recieverAccount: ['', Validators.compose([Validators.required, Validators.pattern('^[-+]?[0-9]*\.?[0-9]+$')])],
       recieverAddress: this.fb.group({
         street: ['', Validators.required],
         city: ['', Validators.required],
@@ -70,13 +73,13 @@ export class TransactionComponent implements OnInit {
       }),
       paymentCode: ['', Validators.required],
       currency: ['', Validators.required],
-      value: ['', Validators.required, Validators.pattern('[0-9]')],
+      value: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
       model: ['', Validators.required],
-      referenceNumber: ['', Validators.required, Validators.pattern('[0-9]')],
+      referenceNumber: ['', Validators.compose([Validators.required,])],
     })
   }
 
-  checksumValidator(c: FormControl, model: string, referenceNumber: string) {
+  checksumValidator(model: string, referenceNumber: string) {
     const m = Number(model);
     const firstK = Number(referenceNumber.substr(0, 2));
     const lastK = referenceNumber.substr(2, referenceNumber.length);

@@ -1,3 +1,4 @@
+import { TransactionService } from './services/transaction.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -108,7 +109,8 @@ export const appRoutes: Routes = [
     ClientService,
     TransactionListService,
     AccountService,
-    ClientUpdateService
+    ClientUpdateService,
+    TransactionService
   ],
   bootstrap: [AppComponent]
 })
