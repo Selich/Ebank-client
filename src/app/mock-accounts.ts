@@ -16,6 +16,24 @@ export const ACCOUNTS: Account[] = [
     accountBalance: 13000,
     availableBalance: 13300
   },
+  {
+    bank: {
+      bankName: "Komercijala"
+    },
+    accountType: "transaction",
+    accountNumber: "12321",
+    accountBalance: 13000,
+    availableBalance: 13300
+  },
+  {
+    bank: {
+      bankName: "Komercijala"
+    },
+    accountType: "transaction",
+    accountNumber: "12321",
+    accountBalance: 13000,
+    availableBalance: 13300
+  },
   // { accountType: "transaction", accountNumber: "1231321", accountBalance: 13000},
   // { accountType: "transaction", accountNumber: "1231321", accountBalance: 13000},
   // { accountType: "transaction", accountNumber: "1231321", accountBalance: 13000},
@@ -37,7 +55,48 @@ export const ACCOUNTS: Account[] = [
 //   address : Address;
 //   role: Role;
 // }
-export const CLIENTS: Client[] = [{
+export const CLIENTS: Client[] = [
+  {
+    id: 1,
+    firstName: 'Nikola',
+    lastName: 'Selic',
+    email: 'nikla@gmail.com',
+    password: "pass",
+    jmbg: "144342424",
+    address: {
+      street: "Poenkareova 22",
+      city: "Paracin",
+      country: "Serbia"
+    },
+    role: {
+      id: 1,
+      name: "admin"
+    },
+    accounts: [
+      ACCOUNTS[0], ACCOUNTS[1]
+    ]
+  },
+  {
+    id: 2,
+    firstName: 'Nikola',
+    lastName: 'Selic',
+    email: 'nikla@gmail.com',
+    password: "pass",
+    jmbg: "144342424",
+    address: {
+      street: "Poenkareova 22",
+      city: "Paracin",
+      country: "Serbia"
+    },
+    role: {
+      id: 1,
+      name: "admin"
+    },
+    accounts: [
+      ACCOUNTS[0], ACCOUNTS[1]
+    ]
+  },
+  {
     id: 3,
     firstName: 'Nikola',
     lastName: 'Selic',

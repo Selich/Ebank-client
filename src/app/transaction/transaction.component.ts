@@ -34,6 +34,7 @@ export class TransactionComponent implements OnInit {
   accounts: Account[] = [];
   account: Account;
   currency: Currency;
+  currencies: Currency[];
   // get from db symbols only
   // currencySymbol =  this.currency.currencySymbol[];
   selectedAccount: Account;
@@ -53,15 +54,15 @@ export class TransactionComponent implements OnInit {
   form() {
     this.transactionForm = this.fb.group({
       senderName: ['', Validators.required],
-      senderAccountNumber: ['', Validators.required],
-      senderDescription: ['', Validators.required],
+      senderAccount: ['', Validators.required, Validators.pattern('[0-9]')],
+      senderDescription: [''],
       senderAddress: this.fb.group({
         street: ['', Validators.required],
         city: ['', Validators.required],
         country: ['', Validators.required],
       }),
       recieverName: ['', Validators.required],
-      recieverAccountNumber: ['', Validators.required],
+      recieverAccount: ['', Validators.required, Validators.pattern('[0-9]')],
       recieverAddress: this.fb.group({
         street: ['', Validators.required],
         city: ['', Validators.required],
@@ -69,10 +70,32 @@ export class TransactionComponent implements OnInit {
       }),
       paymentCode: ['', Validators.required],
       currency: ['', Validators.required],
-      value: ['', Validators.required],
+      value: ['', Validators.required, Validators.pattern('[0-9]')],
       model: ['', Validators.required],
-      referenceNumber: ['', Validators.required],
+      referenceNumber: ['', Validators.required, Validators.pattern('[0-9]')],
     })
+  }
+
+  checksumValidator(c: FormControl, model: string, referenceNumber: string) {
+    const m = Number(model);
+    const firstK = Number(referenceNumber.substr(0, 2));
+    const lastK = referenceNumber.substr(2, referenceNumber.length);
+    let p = '';
+    let i: number;
+    for (i = 0; i < lastK.length; i++) {
+      if (lastK[i].match(/\d+/)) {
+        p += lastK[i]
+      } else if (lastK[i].match(/\A+/)) {
+        p += String(lastK[i].charCodeAt(0) - 55);
+      } else {
+        break;
+      }
+    }
+    const decR = (Number(p) * 100) / m * 10 % 10 / 10;
+    let b = m + 1 - Math.round(decR * m);
+    b = Number((('0' + b).slice(-2)))
+    return (b === firstK);
+
   }
   onSelect(account: Account) {
     this.selectedAccount = account;
@@ -80,6 +103,7 @@ export class TransactionComponent implements OnInit {
   onSubmit(transaction: Transaction) {
     console.log(transaction);
   }
+
 
 
 

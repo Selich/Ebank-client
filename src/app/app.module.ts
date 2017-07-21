@@ -37,9 +37,8 @@ export const appRoutes: Routes = [
     path: 'dashboard' ,
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
       { path: 'clients', component: ClientListComponent},
-      { path: 'client/:id', component: ClientDetailsComponent},
       { path: 'transactions', component: TransactionListComponent},
       { path: 'create', component: ClientCreateComponent},
     ]
@@ -101,6 +100,9 @@ export const appRoutes: Routes = [
       appRoutes
     )
 
+  ],
+  exports: [
+    RouterModule
   ],
   providers: [
     ClientService,

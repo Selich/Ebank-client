@@ -1,5 +1,9 @@
 <div *ngIf="client">
-<h1>{{client.name}}</h1>
+    <h1>{{client?.name}}</h1>
+</div>
+<div>
+    <label for=""></label>
+    <!-- <input type="text" [(ngModel)]="client.name" > -->
 </div>
 
-<button type="btn btn-default" (click)="closeModal()" name="button">Close</button>
+<button type="btn btn-default" (click)="goBack()" name="button">Close</button>

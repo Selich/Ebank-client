@@ -26,7 +26,7 @@ export class Role {
 }
 
 export class Account {
-  bankName: Bank;
+  bank: Bank;
   accountType: string;
   accountNumber: string;
   accountBalance: number;

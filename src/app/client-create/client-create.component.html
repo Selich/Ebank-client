@@ -5,13 +5,19 @@
 
       <!--Name  -->
       <div class="container col-lg-12 padding-bottom">
-        <div class="col-md-6 form-group">
+        <div class="col-md-5 form-group">
           <label for="">First Name:</label>
           <input type="text" formControlName="firstName" [(ngModel)]="firstName" class="form-control" ngControl='firstName'>
         </div>
-        <div class="col-md-6 form-group">
+        <div class="col-md-5 form-group">
           <label for="">Last Name:</label>
           <input type="text" formControlName="lastName" [(ngModel)]="lastName" class="form-control" ngControl='lastName'>
+        </div>
+        <div class="col-md-2 form-group">
+          <label for="">Role:</label>
+          <select name=""  id="" formControlName="role" >
+            <option *ngFor="let role of roles" [value]="role.name">{{role.name}}</option>
+          </select>
         </div>
       </div>
       <!--Address  -->
@@ -65,7 +71,7 @@
               <div class="form-group">
                 <div class="col-md-2">
                   <label for="">Bank:</label>
-                  <input type="text" formControlName="bankName"  class="form-control" ngControl='bankName'>
+                  <input type="text" formControlName="bank"  class="form-control" ngControl='bank'>
                 </div>
                 <div class="col-md-4">
                   <label for="">AccountType:</label>

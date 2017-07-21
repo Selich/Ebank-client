@@ -14,7 +14,8 @@ import {
 import {
   Client,
   Address,
-  Bank
+  Bank,
+  Role
 } from '../models';
 
 @Component({
@@ -28,7 +29,11 @@ export class ClientCreateComponent implements OnInit {
   client: Client;
   accounts: Account[];
   address: Address;
-
+  roles: Role[] = [
+    {id: 1, name: 'Client'},
+    {id: 2, name: 'Admin'}
+  ]
+  role: Role;
 
 constructor(
   private fb: FormBuilder,
@@ -51,6 +56,7 @@ form() {
     }),
     email: ['', Validators.required],
     jmbg: ['', Validators.required],
+    role: ['', Validators.required],
     password: ['', Validators.required],
     accounts: this.fb.array([])
   });
@@ -65,7 +71,7 @@ form() {
 initAccounts() {
   return this.fb.group({
     accountType: ['', Validators.required],
-    bankName: ['', Validators.required],
+    bank: ['', Validators.required],
     accountNumber: ['', Validators.required],
     accountBalance: ['', Validators.required],
     availableBalance: ['', Validators.required],
@@ -85,7 +91,7 @@ removeAccount(i: number) {
 }
 
 onSubmit(client: Client) {
-  console.log(client);
+  
 
 }
 

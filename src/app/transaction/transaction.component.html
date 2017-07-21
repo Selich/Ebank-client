@@ -7,6 +7,7 @@
 
       <div class="grid grid-pad container-fluid col-lg-10">
         <div class="col-sm-3  account" *ngFor="let account of accounts" (click)="onSelect(account)" [class.selected]="account === selectedAccount">
+          <h5>Bank: {{account.bank.bankName}}</h5>
           <h5>Account: {{account.accountNumber}}</h5>
           <h5>Balance: {{account.accountBalance}}</h5>
         </div>
@@ -25,9 +26,9 @@
             </div>
             <div class="col-md-1">
               <label for="">Currency:</label>
-              <select *ngFor="let currency of currencys" name="" id="">
+              <select *ngFor="let currency of currencies" name="" id="">
                   <option>{{currency.currencySymbol}}</option>
-                </select>
+               </select>
             </div>
             <div class="col-md-3">
               <label for="">Value:</label>
