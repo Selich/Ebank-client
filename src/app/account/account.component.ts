@@ -1,3 +1,4 @@
+import { ClientService } from './../services/client.service';
 import {
   Component,
   OnInit
@@ -21,12 +22,14 @@ export class AccountComponent implements OnInit {
 
   accounts: Account[] = [];
 
-  constructor(private accountService: AccountService) {}
+  constructor(
+    private accountService: AccountService,
+    private clientService: ClientService
+  ) {}
 
   ngOnInit() {
     this.accountService.getFake()
       .then(accounts => this.accounts = accounts.slice(1, 5));
     // .subscribe(resAccountData => this.accounts = resAccountData.slice(1,5));
   }
-
 }

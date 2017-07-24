@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { TransactionService } from './services/transaction.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule,
          MdDialogModule,
+         MdSelectModule,
+         MdInputModule,
          } from '@angular/material';
 
 import { AccountService } from './services/account.service';
@@ -58,6 +61,9 @@ export const appRoutes: Routes = [
     component: MainComponent,
     children: [
       { path: '', redirectTo: 'accounts', pathMatch: 'full'},
+      { path: 'clients', component: ClientListComponent},
+      { path: 'transactions', component: TransactionListComponent},
+      { path: 'create', component: ClientCreateComponent},
       { path: 'accountDetail', component: AccountDetailComponent},
       { path: 'transaction', component: TransactionComponent},
       { path: 'exchangeRates', component: ExchangeComponent},
@@ -96,6 +102,8 @@ export const appRoutes: Routes = [
    //  material
     MdButtonModule,
     MdDialogModule,
+    MdSelectModule,
+    MdInputModule,
    //  router
     RouterModule.forRoot(
       appRoutes
@@ -103,14 +111,16 @@ export const appRoutes: Routes = [
 
   ],
   exports: [
-    RouterModule
+    RouterModule,
+    MdInputModule
   ],
   providers: [
     ClientService,
     TransactionListService,
     AccountService,
     ClientUpdateService,
-    TransactionService
+    TransactionService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

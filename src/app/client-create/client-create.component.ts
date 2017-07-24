@@ -1,4 +1,10 @@
 import {
+  MdButton,
+  MdSelect,
+  MdInputContainer,
+  MdInputDirective
+ } from '@angular/material';
+import {
   ClientService
 } from './../services/client.service';
 import {
@@ -28,6 +34,7 @@ export class ClientCreateComponent implements OnInit {
   bank: Bank;
   client: Client;
   accounts: Account[];
+  account: Account;
   address: Address;
   roles: Role[] = [
     {id: 1, name: 'Client'},
@@ -52,12 +59,14 @@ form() {
       street: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
-
     }),
     email: ['', Validators.required],
     jmbg: ['', Validators.required],
-    role: ['', Validators.required],
+    role: this.fb.group({
+      name: ['', Validators.required],
+    }),
     password: ['', Validators.required],
+    // accounts: this.fb.array([])
     accounts: this.fb.array([])
   });
 }
@@ -70,7 +79,6 @@ form() {
 // }
 initAccounts() {
   return this.fb.group({
-    accountType: ['', Validators.required],
     bank: ['', Validators.required],
     accountNumber: ['', Validators.required],
     accountBalance: ['', Validators.required],
@@ -91,8 +99,8 @@ removeAccount(i: number) {
 }
 
 onSubmit(client: Client) {
-  
-
+  this.clientService.postClient(client);
+  console.log(JSON.stringify(client))
 }
 
 

@@ -29,16 +29,14 @@ import {
   styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent implements OnInit {
-  // TODO: sredi za transaction
   transactionForm: FormGroup;
   accounts: Account[] = [];
   account: Account;
-  currency: Currency;
-  currencies: Currency[];
-  // get from db symbols only
-  // currencySymbol =  this.currency.currencySymbol[];
   selectedAccount: Account;
   transaction: Transaction;
+  currency: Currency;
+  currencies: Currency[];
+  selectedCurrency: Currency;
 
 
   constructor(
@@ -51,7 +49,13 @@ export class TransactionComponent implements OnInit {
     this.accountService.getFake()
       .then(accounts => this.accounts = accounts);
     // .subscribe(resAccountData => this.accounts = resAccountData.slice(1,5));
+    this.getCurrencies();
     this.form();
+  }
+
+  getCurrencies() {
+    this.transactionService.getExchangeRate()
+        .then(currecies => this.currencies = currecies);
   }
 
   form() {
@@ -65,7 +69,7 @@ export class TransactionComponent implements OnInit {
         country: ['', Validators.required],
       }),
       recieverName: ['', Validators.required],
-      recieverAccount: ['', Validators.compose([Validators.required, Validators.pattern('^[-+]?[0-9]*\.?[0-9]+$')])],
+      recieverAccount: ['', Validators.required],
       recieverAddress: this.fb.group({
         street: ['', Validators.required],
         city: ['', Validators.required],
@@ -75,7 +79,7 @@ export class TransactionComponent implements OnInit {
       currency: ['', Validators.required],
       value: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
       model: ['', Validators.required],
-      referenceNumber: ['', Validators.compose([Validators.required,])],
+      referenceNumber: ['', Validators.required]
     })
   }
 
@@ -107,6 +111,8 @@ export class TransactionComponent implements OnInit {
     console.log(transaction);
   }
 
+  onCurrencySelect() {
+  }
 
 
 

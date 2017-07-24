@@ -11,7 +11,6 @@ export const ACCOUNTS: Account[] = [
     bank: {
       bankName: "Komercijala"
     },
-    accountType: "transaction",
     accountNumber: "1231321",
     accountBalance: 13000,
     availableBalance: 13300
@@ -20,7 +19,6 @@ export const ACCOUNTS: Account[] = [
     bank: {
       bankName: "Komercijala"
     },
-    accountType: "transaction",
     accountNumber: "12321",
     accountBalance: 13000,
     availableBalance: 13300
@@ -29,7 +27,6 @@ export const ACCOUNTS: Account[] = [
     bank: {
       bankName: "Komercijala"
     },
-    accountType: "transaction",
     accountNumber: "12321",
     accountBalance: 13000,
     availableBalance: 13300
@@ -129,45 +126,37 @@ export const CLIENTS: Client[] = [
 // }
 //
 
-export const EXCHANGERATES: Currency[] = [{
+export const EXCHANGERATES: Currency[] = [
+  {
   id: 1,
   countryName: "EU",
   currencySymbol: "EUR",
   worthFor: 1,
   buyingRate: 120.1826,
   sellingRate: 120.9058
-}]
+ },
+ {
+  id: 2,
+  countryName: "UK",
+  currencySymbol: "GBR",
+  worthFor: 1,
+  buyingRate: 140.1826,
+  sellingRate: 140.9058
+ }
+]
 
-// export class Transaction{
-//    id: number;
-//    senderAccount: Account;
-//    senderDescription: string;
-//    receiverAccount: Account;
-//    currency: Currency;
-//    transactionDate: string;
-//    amountTransferred: number;
-// }
-
-export const TRANSACTIONS: Transaction[] = [{
-    id: 1,
-    senderAccount:
-      // { accountType: "transaction", accountNumber: "1231321", accountBalance: 13000},
-      ACCOUNTS[0],
-    senderDescription: "asdfasfd",
-    receiverAccount: ACCOUNTS[1],
-    currency: "eu",
-    transactionDate: "12/32/4144",
-    amountTransferred: 1240
-  },
+export const TRANSACTIONS: Transaction[] = [
   {
-    id: 1,
-    senderAccount:
-      // { accountType: "transaction", accountNumber: "1231321", accountBalance: 13000},
-      ACCOUNTS[0],
-    senderDescription: "asdfasfd",
-    receiverAccount: ACCOUNTS[1],
-    currency: "eu",
-    transactionDate: "12/32/4144",
-    amountTransferred: 1240
+    senderAccount: '123292',
+    senderDescription: 'asdfasfd',
+    senderAddress: CLIENTS[0].address,
+    paymentCode: '123992',
+    receiverAccount: '1323',
+    recieverAddress: CLIENTS[1].address,
+    currency: EXCHANGERATES[0],
+    transactionDate: '12/32/4144',
+    model: '92',
+    refereceNumber: '1232',
+    value: 1240
   }
 ]

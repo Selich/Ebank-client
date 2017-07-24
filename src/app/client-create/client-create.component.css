@@ -8,6 +8,9 @@
   animation: 2s animAlert forwards;
 }
 
+.input { width: 300px; padding: 10px }
+.input-address { width: 250px; padding-left: 25px }
+
 
 @keyframes animAlert {
   from {

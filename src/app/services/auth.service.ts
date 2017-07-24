@@ -12,13 +12,15 @@ export class AuthService {
 
   client: Client;
   isLoggedIn = false;
+  URL = 'http://localhost:8080/api/v1/ebank/auth';
 
   constructor(private http: Http) {
   }
 
-  login(client: Client): Observable<boolean> {
-      return this.http.post(URL + '/login', client)
+  login(client) {
+      return this.http.post('http://localhost:8080/api/v1/ebank/auth/login', client)
                       .map(response => response.json() as Client )
+                      // tslint:disable-next-line:no-shadowed-variable
                       .map(client => {
                           if (!Client.isNull(client)) {
                               this.isLoggedIn = true;
@@ -28,8 +30,8 @@ export class AuthService {
                               return false;
                           }
                       })
-
   }
+//   }
 
 
 

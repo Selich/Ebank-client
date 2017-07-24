@@ -9,10 +9,21 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AccountService {
 
+  private baseUrl = 'http://localhost:8080/api/v1/ebank/account';
+
   constructor(private http: Http) {
   }
 
 
+  getAccountsByCurrentClient() {
+    this.http.get(this.baseUrl + '/current')
+        .map(res => res.json());
+
+  }
+
+  getAccountsByClient() {
+
+  }
 
   getAccounts() {
     return this.http.get('http://localhost:8080/api/v1/user/accounts')

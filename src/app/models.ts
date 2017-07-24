@@ -10,8 +10,7 @@ export class Client {
   accounts: Account[];
 
   public static isNull(client: Client): any {
-    return client.id === null &&
-      client.firstName === null &&
+  return  client.firstName === null &&
       client.lastName === null &&
       client.email === null &&
       client.jmbg === null &&
@@ -27,7 +26,6 @@ export class Role {
 
 export class Account {
   bank: Bank;
-  accountType: string;
   accountNumber: string;
   accountBalance: number;
   availableBalance: number;
@@ -45,13 +43,17 @@ export class Bank {
 
 
 export class Transaction {
-  id: number;
-  senderAccount: Account;
+  senderAccount: string;
   senderDescription: string;
-  receiverAccount: Account;
+  senderAddress: Address;
+  receiverAccount: string;
+  recieverAddress: Address;
+  paymentCode: string;
   currency: string;
   transactionDate: string;
-  amountTransferred: number;
+  value: number;
+  model: string;
+  refereceNumber: string;
 }
 
 export class Currency {

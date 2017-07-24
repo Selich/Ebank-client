@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog, MdDialogRef} from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 import { Client } from './../models';
 import { Router } from '@angular/router';
 
@@ -18,8 +18,14 @@ export class ClientListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.clientService.getClientsFake()
-    .then(clients => this.clients = clients);
+    // this.clientService.getClientsFake()
+    // .then(clients => this.clients = clients);
+    this.getClients();
+  }
+
+  getClients() {
+    this.clientService.getClients()
+    .subscribe(clients => this.clients = clients);
   }
 
 

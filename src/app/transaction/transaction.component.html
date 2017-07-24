@@ -35,8 +35,10 @@
             </div>
             <div class="col-md-1">
               <label for="">Currency:</label>
-              <select *ngFor="let currency of currencies" name="" id="">
-                  <option>{{currency.currencySymbol}}</option>
+              <select name="" id="">
+                  <option 
+                   *ngFor="let currency of currencies" 
+                  >{{currency.currencySymbol}}</option>
                </select>
               <small [hidden]="transactionForm.controls.currency.valid || (transactionForm.controls.currency.pristine && !submited)"
                      class="text-danger">
@@ -65,7 +67,7 @@
               <input type="text" formControlName="city" class="form-control" id="" placeholder="">
             </div>
             <div class="col-md-2">
-              <label for="">County :</label>
+              <label for="">Country :</label>
               <input type="text" formControlName="country" class="form-control" id="" placeholder="">
             </div>
           </div>
@@ -138,7 +140,7 @@
           </div>
             <div class="col-md-4">
               <label for=""></label>
-              <input type="submit" class="btn btn-success btn-block " name="" value="Submit" [disabled]="!transactionForm.valid">
+              <input type="submit" class="btn btn-success btn-block " name="" value="Submit" >
             </div>
         </div>
 
