@@ -1,5 +1,4 @@
 <h2 class="page-header">Client List</h2>
-
 <form class="  form">
     <input type="text" class="form-control" placeholder="Search...">
 </form>
@@ -8,25 +7,25 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>First Name:</th>
-        <th>Last Name:</th>
-        <th>Jmbg:</th>
-        <th>Email:</th>
-        <th>Password:</th>
-        <th>Address:</th>
+        <th>first name:</th>
+        <th>last name:</th>
+        <th>jmbg:</th>
+        <th>email:</th>
+        <th>password:</th>
+        <th>address:</th>
       </tr>
     </thead>
-    <tbody *ngFor="let client of clients; let i = index" [routerLink]="['/', client.id]" 
+    <tbody *ngFor="let client of clients; let i = index" 
     class="touch">
       <tr>
         <td>{{client.id}}</td>
-        <td>{{client.firstName}}</td>
-        <td>{{client.lastName}}</td>
+        <td>{{client.firstname}}</td>
+        <td>{{client.lastname}}</td>
         <td>{{client.jmbg}}</td>
         <td>{{client.email}}</td>
         <td>{{client.password}}</td>
         <td>{{client.address.street}}, {{client.address.city}}, {{client.address.country}}</td>
-        <button class="btn btn-warning btn-sm" (click) = "updateClient(client.id)">Update</button>
+        <button class="btn btn-warning btn-sm" (click) = "openUpdateDialog(client.id)">Update</button>
         ||
         <button class="btn btn-danger btn-sm" (click) = "deleteClient(client.id, i)">Delete <span class="glyphicon glyphicon-trash "></span></button>
       </tr>

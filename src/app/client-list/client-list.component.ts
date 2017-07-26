@@ -1,3 +1,4 @@
+import { ClientUpdateComponent } from './../client-update/client-update.component';
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Client } from './../models';
@@ -11,11 +12,13 @@ import { ClientService } from '../services/client.service';
 })
 export class ClientListComponent implements OnInit {
 
+  client: Client;
   clients: Client[];
   errorMsg: String;
 
   constructor(
     private clientService: ClientService,
+    private dialog: MdDialog
   ) {}
 
   ngOnInit() {
@@ -27,6 +30,23 @@ export class ClientListComponent implements OnInit {
     .subscribe(resClientsData => this.clients = resClientsData,
               resClientError  => this.errorMsg = resClientError);
     console.log(this.errorMsg);
+  }
+  openUpdateDialog(id) {
+    const dialogRef = this.dialog.open(ClientUpdateComponent);
+    dialogRef.componentInstance.id = id;
+    dialogRef.afterClosed()
+    .subscribe(client => this.client = client)
+
+
+  }
+
+  deleteClient(id, i) {
+    this.clientService.deleteClient(id)
+        .subscribe(response => {
+          this.clients.splice(i, 1),
+          console.log(i);
+        })
+
   }
 
 

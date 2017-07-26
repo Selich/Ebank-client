@@ -28,7 +28,7 @@ export class ClientService {
     headers.append( 'Authorization', 'Basic dGVzdHVzZXI6dGVzdHBhc3M=');
     const options = new RequestOptions({headers: headers});
 
-    return this.http.post('http://localhost:8080/api/v1/ebank/client/create', bodyString, options)
+    return this.http.post(this.baseUrl + '/create', bodyString, options)
           .map((res: Response) => res.json())
           .catch(this.errorHandler);
     // console.log(client);
@@ -44,6 +44,37 @@ export class ClientService {
           .catch(this.errorHandler);
   }
 
+  deleteClient(id) {
+    const headers = new Headers();
+    headers.append( 'Content-Type', 'application/json');
+    headers.append( 'Authorization', 'Basic dGVzdHVzZXI6dGVzdHBhc3M=');
+    const options = new RequestOptions({headers: headers});
+    return this.http.delete(this.baseUrl + '/' + id, options)
+          .map((res: Response) => res.json())
+          .catch(this.errorHandler);
+  }
+
+  getClientById(id) {
+    const headers = new Headers();
+    headers.append( 'Content-Type', 'application/json');
+    headers.append( 'Authorization', 'Basic dGVzdHVzZXI6dGVzdHBhc3M=');
+    const options = new RequestOptions({headers: headers});
+    return this.http.get(this.baseUrl + '/' + id, options)
+          .map((res: Response) => res.json())
+          .catch(this.errorHandler);
+  }
+
+
+  updateClient(client) {
+    const headers = new Headers();
+    const bodyString = JSON.stringify(client);
+    headers.append( 'Content-Type', 'application/json');
+    headers.append( 'Authorization', 'Basic dGVzdHVzZXI6dGVzdHBhc3M=');
+    const options = new RequestOptions({headers: headers});
+    return this.http.put(this.baseUrl + '/', options)
+          .map((res: Response) => res.json())
+          .catch(this.errorHandler);
+  }
   getCurrentClient() {
     return this.http.get(this.baseUrl + '/' + localStorage.getItem('id'))
           .map(res => res.json());

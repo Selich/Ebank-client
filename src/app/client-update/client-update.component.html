@@ -1,134 +1,109 @@
-
-<h2 class="page-header">Update Client</h2>
-<form class="" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+<h2 class="page-header">
+  Create Client
+  <h3>{{client.firstName}} {{client.lastName}}</h3>
+</h2>
+<form name="form" [formGroup]="clientForm" (ngSubmit)="onSubmit(clientForm.value)" novalidate>
   <div class="container">
     <div class="row">
 
-          <div class="container col-lg-10 padding-bottom">
-            <div class="form-group">
-              <div class="col-md-6">
-                <label for="">First Name:</label>
-                <input type="text"
-                       formControlName="firstName"
-                       [(ngModel)]="client.firstName"
-                       class="form-control"
-                       ngControl='firstName'
-                       >{{client.firstName}}
-              </div>
-              <div class="col-md-6">
-                <label for="">Last Name:</label>
-                <input type="text"
-                       formControlName="lastName"
-                       [(ngModel)]="client.lastName"
-                       class="form-control"
-                       ngControl='lastName'
-                       >
-              </div>
-              <!-- <div class="col-md-4">
-                <label for="">Date of Birth:</label>
-                <input type="date"
-                       formControlName="dOB"
-                       [(ngModel)]="client.dOB"
-                       class="form-control"
-                       ngControl='lastName'
-                       >
-              </div> -->
+      <!--Name  -->
+      <div class="container col-lg-6 padding-bottom">
+      <div class="container col-lg-12 padding-bottom">
+        <div class="col-md-12 form-group">
+          <div class="col-md-4">
+            <md-input-container class="input">
+              <input mdInput type="text" placeholder="First Name" formControlName="firstName" [(ngModel)]="client.firstName" ngControl='firstName'>
+              <md-error *ngIf="clientForm.controls.firstName.required">
+                Required
+              </md-error>
+            </md-input-container>
+          </div>
+          <div class="col-md-4">
+            <md-input-container class="input">
+              <input mdInput type="text" placeholder="Last Name" formControlName="lastName" [(ngModel)]="client.lastName" ngControl='lastName'>
+              <md-error *ngIf="clientForm.controls.lastName.required">
+                Required
+              </md-error>
+            </md-input-container>
+          </div>
+          <div class="col-md-4">
+            <div class="" formGroupName="role">
+              <md-select style="margin-top: 25px; padding-left: 10px" name="" id="" formControlName="name" placeholder="Role">
+                <md-option *ngFor="let role of roles" [value]="role.name">{{role.name}}</md-option>
+              </md-select>
             </div>
           </div>
-
-          <div class="container col-lg-10 padding-bottom">
-            <div class="form-group">
-              <div class="col-md-4">
-                <label for="">Street:</label>
-                <input type="text"
-                       formControlName="street"
-                       [(ngModel)]="client.address.street"
-                       class="form-control"
-                       ngControl='street'
-                       >
-              </div>
-              <div class="col-md-4">
-                <label for="">City:</label>
-                <input type="text"
-                       formControlName="city"
-                       [(ngModel)]="client.address.city"
-                       class="form-control"
-                       ngControl='city'
-                       >
-              </div>
-              <div class="col-md-4">
-                <label for="">Country:</label>
-                <input type="text"
-                       formControlName="country"
-                       [(ngModel)]="client.address.country"
-                       class="form-control"
-                       ngControl='country'
-                       >
-              </div>
-            </div>
+        </div>
+      </div>
+      <!--Address  -->
+      <div class="container col-lg-12 padding-bottom">
+        <div class="form-group" formGroupName="address">
+          <div class="col-md-4">
+            <md-input-container class="input-address">
+              <input mdInput type="text" placeholder="Street" formControlName="street" [(ngModel)]="client.address.street" ngControl='street'>
+            </md-input-container>
           </div>
-
-
-<!-- export class Client {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  jmbg: string;
-  address : Address;
-} -->
-
-          <div class="container col-lg-10">
-            <div class="form-group">
-              <div class="col-md-6">
-                <label for="">Email:</label>
-                <input type="text"
-                       formControlName="email"
-                       [(ngModel)]="client.email"
-                       class="form-control"
-                       ngControl='email'
-                       >
-              </div>
-              <div class="col-md-6">
-                <label for="">Jmbg:</label>
-                <input type="text"
-                       formControlName="jmbg"
-                       [(ngModel)]="client.jmbg"
-                       class="form-control"
-                       ngControl='jmbg'
-                       >
-              </div>
-            </div>
+          <div class="col-md-4">
+            <md-input-container class="input-address">
+              <input mdInput type="text" placeholder="City" formControlName="city" [(ngModel)]="client.address.city" ngControl='city'>
+            </md-input-container>
           </div>
-          <div class="container col-lg-10">
-            <div class="form-group">
-              <div class="col-md-4">
-                <label for="">Password:</label>
-                <input type="password"
-                       formControlName="password"
-                       [(ngModel)]="client.password"
-                       class="form-control"
-                       ngControl='password'
-                       >
-              </div>
-              <div class="col-md-2" >
-                 <label>Role</label>
-                 <select class="" [(ngModel)]="client.role"name="role">
-                    <option [value]="role.value" *ngFor="let role of roles"></option>
-                    {{roles.display}}
-                 </select>
-              </div>
-              <div class="col-md-6">
-                <label for=""></label>
-                <input type="submit" class="btn btn-primary btn-block " name="" value="Submit" [disabled]="!rForm.valid">
-              </div>
-            </div>
+          <div class="col-md-4">
+            <md-input-container class="input-address">
+              <input mdInput type="text" placeholder="Country" formControlName="country" [(ngModel)]="client.address.country" ngControl='country'>
+            </md-input-container>
           </div>
+        </div>
+      </div>
+      <!--Email,Jmbg,Pass  -->
+      <div class="container col-lg-12">
+        <div class="form-group">
+          <div class="col-md-4">
+            <md-input-container class="input-address">
+              <input mdInput type="text" placeholder="E-mail" formControlName="email" [(ngModel)]="client.email" ngControl='email'>
+            </md-input-container>
+          </div>
+          <div class="col-md-4">
+            <md-input-container class="input-address">
+              <input mdInput type="text" placeholder="JMBG" formControlName="jmbg" [(ngModel)]="client.jmbg" ngControl='jmbg'>
+            </md-input-container>
+          </div>
+          <div class="col-md-4">
+            <md-input-container class="input-address">
+              <input mdInput type="password" placeholder="Password" formControlName="password" [(ngModel)]="client.password" ngControl='password'>
+            </md-input-container>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    <div class="container-fluid col-lg-4">
+
+
+      <ul class="accountList">
+        <li *ngFor="let account of accounts" class="accountList" (click)="onSelect(account)" [class.selected]="account === selectedAccount">
+          <h5>{{account.bank.bankName}}</h5>
+          <h5>{{account.accountNumber}}</h5>
+        </li>
+      </ul>
+    </div>
+
+    <div class="row " *ngIf="selectedAccount">
+      <div class="container col-lg-6">
+        <h5>Bank: {{account.bank.bankName}}</h5>
+        <h5>Number: {{selectedAccount.accountNumber}}</h5>
+        <h3>Balance: {{selectedAccount.accountBalance}}</h3>
+      </div>
 
 
     </div>
+    <div class="container col-lg-12">
+      <div class="col-md-12">
+        <label for=""></label>
+        <button md-raised-button color="accent" type="submit" [disabled]="!clientForm.valid" md-dialog-close class="btn btn-block"
+          value="Submit">Submit</button>
+      </div>
+    </div>
   </div>
-
-
+  </div>
 </form>

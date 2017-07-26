@@ -57,8 +57,6 @@ onSubmit(client: Client) {
    .subscribe(resClient => this.client = resClient,
              resClientError  => this.errorMsg = resClientError);
 }
-
-
 form() {
   this.clientForm = this.fb.group({
     firstName: ['', Validators.required],
