@@ -41,6 +41,7 @@ export class ClientCreateComponent implements OnInit {
     {id: 2, name: 'Admin'}
   ]
   role: Role;
+  errorMsg: string;
 
 constructor(
   private fb: FormBuilder,
@@ -48,26 +49,31 @@ constructor(
 ) {}
 ngOnInit() {
   this.form();
-  this.addAccount();
+  // this.addAccount();
 }
 
+onSubmit(client: Client) {
+  this.clientService.postClient(client)
+   .subscribe(resClient => this.client = resClient,
+             resClientError  => this.errorMsg = resClientError);
+}
 form() {
   this.clientForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
+    email: ['', Validators.required],
+    jmbg: ['', Validators.required],
+    password: ['', Validators.required],
     address: this.fb.group({
       street: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
     }),
-    email: ['', Validators.required],
-    jmbg: ['', Validators.required],
     role: this.fb.group({
       name: ['', Validators.required],
     }),
-    password: ['', Validators.required],
     // accounts: this.fb.array([])
-    accounts: this.fb.array([])
+    // accounts: this.fb.array([])
   });
 }
 
@@ -86,22 +92,18 @@ initAccounts() {
   })
 }
 
-addAccount() {
-  const control = < FormArray > this.clientForm.controls['accounts'];
-  const accCtrl = this.initAccounts();
-  control.push(this.initAccounts());
+// addAccount() {
+//   const control = < FormArray > this.clientForm.controls['accounts'];
+//   const accCtrl = this.initAccounts();
+//   control.push(this.initAccounts());
 
-}
+// }
 
-removeAccount(i: number) {
-  const control = < FormArray > this.clientForm.controls['accounts'];
-  control.removeAt(i);
-}
+// removeAccount(i: number) {
+//   const control = < FormArray > this.clientForm.controls['accounts'];
+//   control.removeAt(i);
+// }
 
-onSubmit(client: Client) {
-  this.clientService.postClient(client);
-  console.log(JSON.stringify(client))
-}
 
 
 

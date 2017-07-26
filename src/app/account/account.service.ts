@@ -15,19 +15,16 @@ export class AccountService {
   }
 
 
-  getAccountsByCurrentClient() {
-    this.http.get(this.baseUrl + '/current')
-        .map(res => res.json());
 
-  }
-
-  getAccountsByClient() {
-
-  }
 
   getAccounts() {
     return this.http.get('http://localhost:8080/api/v1/user/accounts')
     .map((response: Response) => response.json());
+  }
+  getAccountClient() {
+    return this.http.get(this.baseUrl + '/current')
+        .map(res => res.json());
+
   }
 
   getFake(): Promise<Account[]>{

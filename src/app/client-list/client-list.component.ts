@@ -11,21 +11,22 @@ import { ClientService } from '../services/client.service';
 })
 export class ClientListComponent implements OnInit {
 
-  clients: Client[] = [];
+  clients: Client[];
+  errorMsg: String;
 
   constructor(
     private clientService: ClientService,
   ) {}
 
   ngOnInit() {
-    // this.clientService.getClientsFake()
-    // .then(clients => this.clients = clients);
     this.getClients();
   }
 
   getClients() {
     this.clientService.getClients()
-    .subscribe(clients => this.clients = clients);
+    .subscribe(resClientsData => this.clients = resClientsData,
+              resClientError  => this.errorMsg = resClientError);
+    console.log(this.errorMsg);
   }
 
 

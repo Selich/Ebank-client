@@ -25,6 +25,10 @@ export class TransactionService {
     return this.http.post('http://localhost:8080/api/v1/ebank/transaction', bodyString, options)
               .map((res: Response) => res.json());
   }
-
+  getAccountsByClient() {
+    const baseUrl = 'http://localhost:8080/api/v1/ebank/account';
+    return this.http.get(baseUrl + localStorage.getItem('client.id'))
+        .map(res => res.json());
+  }
 
 }

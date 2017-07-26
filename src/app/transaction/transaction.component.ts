@@ -48,7 +48,9 @@ export class TransactionComponent implements OnInit {
   ngOnInit() {
     this.accountService.getFake()
       .then(accounts => this.accounts = accounts);
+
     // .subscribe(resAccountData => this.accounts = resAccountData.slice(1,5));
+    this.getAccountByClient();
     this.getCurrencies();
     this.form();
   }
@@ -58,23 +60,19 @@ export class TransactionComponent implements OnInit {
         .then(currecies => this.currencies = currecies);
   }
 
+  getAccountByClient() {
+    this.transactionService.getAccountsByClient()
+      .map(accounts => this.accounts = accounts);
+
+  }
+
   form() {
     this.transactionForm = this.fb.group({
       senderName: ['', Validators.required],
-      senderAccount: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
-      senderDescription: [''],
-      senderAddress: this.fb.group({
-        street: ['', Validators.required],
-        city: ['', Validators.required],
-        country: ['', Validators.required],
-      }),
-      recieverName: ['', Validators.required],
+      senderAccount: ['', Validators.required],
       recieverAccount: ['', Validators.required],
-      recieverAddress: this.fb.group({
-        street: ['', Validators.required],
-        city: ['', Validators.required],
-        country: ['', Validators.required],
-      }),
+      senderDescription: [''],
+      recieverName: ['', Validators.required],
       paymentCode: ['', Validators.required],
       currency: ['', Validators.required],
       value: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
@@ -108,6 +106,7 @@ export class TransactionComponent implements OnInit {
     this.selectedAccount = account;
   }
   onSubmit(transaction: Transaction) {
+    this.transactionService.postTransaction(transaction);
     console.log(transaction);
   }
 

@@ -56,20 +56,22 @@
         <div class="form-group">
           <div class="col-md-4">
             <md-input-container class="input-address">
-              <input mdInput type="text" placeholder="Country" formControlName="country" [(ngModel)]="country" ngControl='country'>
+              <input mdInput type="text" placeholder="E-mail" formControlName="email" [(ngModel)]="email" ngControl='email'>
             </md-input-container>
           </div>
           <div class="col-md-4">
-            <label for="">Jmbg:</label>
-            <input type="text" formControlName="jmbg" [(ngModel)]="jmbg" class="form-control" ngControl='jmbg'>
+            <md-input-container class="input-address">
+              <input mdInput type="text" placeholder="JMBG" formControlName="jmbg" [(ngModel)]="jmbg" ngControl='jmbg'>
+            </md-input-container>
           </div>
           <div class="col-md-4">
-            <label for="">Password:</label>
-            <input type="password" formControlName="password" [(ngModel)]="password" class="form-control" ngControl='password'>
+            <md-input-container class="input-address">
+              <input mdInput type="password" placeholder="Password" formControlName="password" [(ngModel)]="password" ngControl='password'>
+            </md-input-container>
           </div>
         </div>
       </div>
-      <div formArrayName="accounts">
+      <!-- <div formArrayName="accounts">
         <div class="container col-lg-12 padding-bottom">
           <button md-button-raised color="primary" (click)="addAccount()" class="btn pull-right btn-block" style="margin-top: 10px">Add account</button>
         </div>
@@ -113,14 +115,13 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="container col-lg-12">
           <div class="col-md-12">
             <label for=""></label>
             <button md-raised-button color="accent" type="submit" [disabled]="!clientForm.valid" class="btn btn-block" value="Submit">Submit</button>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </form>

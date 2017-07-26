@@ -1,3 +1,4 @@
+import { AuthGuardService } from './services/authguard.service';
 import { AuthService } from './services/auth.service';
 import { TransactionService } from './services/transaction.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,16 +39,6 @@ import { ClientDetailsComponent } from './client-details/client-details.componen
 
 export const appRoutes: Routes = [
   {
-    path: 'dashboard' ,
-    component: DashboardComponent,
-    children: [
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-      { path: 'clients', component: ClientListComponent},
-      { path: 'transactions', component: TransactionListComponent},
-      { path: 'create', component: ClientCreateComponent},
-    ]
-  },
-  {
     path: 'login',
     component: LoginComponent
   },
@@ -58,6 +49,7 @@ export const appRoutes: Routes = [
   },
   {
     path: 'app' ,
+    canActivate: [AuthGuardService],
     component: MainComponent,
     children: [
       { path: '', redirectTo: 'accounts', pathMatch: 'full'},
@@ -120,6 +112,7 @@ export const appRoutes: Routes = [
     AccountService,
     ClientUpdateService,
     TransactionService,
+    AuthGuardService,
     AuthService
   ],
   bootstrap: [AppComponent]

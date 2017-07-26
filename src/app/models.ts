@@ -43,14 +43,11 @@ export class Bank {
 
 
 export class Transaction {
-  senderAccount: string;
+  senderAccount: Account;
   senderDescription: string;
-  senderAddress: Address;
-  receiverAccount: string;
-  recieverAddress: Address;
+  receiverAccount: Account;
   paymentCode: string;
-  currency: string;
-  transactionDate: string;
+  currency: Currency;
   value: number;
   model: string;
   refereceNumber: string;

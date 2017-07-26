@@ -147,14 +147,11 @@ export const EXCHANGERATES: Currency[] = [
 
 export const TRANSACTIONS: Transaction[] = [
   {
-    senderAccount: '123292',
+    senderAccount: ACCOUNTS[0],
     senderDescription: 'asdfasfd',
-    senderAddress: CLIENTS[0].address,
     paymentCode: '123992',
-    receiverAccount: '1323',
-    recieverAddress: CLIENTS[1].address,
+    receiverAccount: ACCOUNTS[1],
     currency: EXCHANGERATES[0],
-    transactionDate: '12/32/4144',
     model: '92',
     refereceNumber: '1232',
     value: 1240

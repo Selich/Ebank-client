@@ -7,6 +7,7 @@ import { Client } from '../models';
 import { CLIENTS} from '../mock-accounts';
 
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 @Injectable()
 export class ClientService {
 
@@ -18,18 +19,29 @@ export class ClientService {
   }
 
 
-  postClient(client: Client ): Observable<Client> {
+  postClient(client: Client) {
+    // const username = 'testuser';
+    // const password = 'testpass';
     const bodyString = JSON.stringify(client);
-    const headers = new Headers({ 'Content-Type': 'application/json'});
-    const options = new RequestOptions({ headers: headers});
+    const headers = new Headers();
+    headers.append( 'Content-Type', 'application/json');
+    headers.append( 'Authorization', 'Basic dGVzdHVzZXI6dGVzdHBhc3M=');
+    const options = new RequestOptions({headers: headers});
 
     return this.http.post('http://localhost:8080/api/v1/ebank/client/create', bodyString, options)
-              .map((res: Response) => res.json());
+          .map((res: Response) => res.json())
+          .catch(this.errorHandler);
+    // console.log(client);
   }
 
   getClients() {
-    return this.http.get(`${this.baseUrl} + /list`)
-          .map(res => res.json());
+    const headers = new Headers();
+    headers.append( 'Content-Type', 'application/json');
+    headers.append( 'Authorization', 'Basic dGVzdHVzZXI6dGVzdHBhc3M=');
+    const options = new RequestOptions({headers: headers});
+    return this.http.get(this.baseUrl + '/list', options)
+          .map((res: Response) => res.json())
+          .catch(this.errorHandler);
   }
 
   getCurrentClient() {
@@ -37,11 +49,10 @@ export class ClientService {
           .map(res => res.json());
   }
 
-  getClient() {}
-
-  updateClient() {}
-
-  deleteClient() {}
+  errorHandler(error: Response) {
+    console.error(error);
+    return Observable.throw(error || 'Server error');
+  }
 
 // FAKE
   getClientsFake(): Promise<Client[]> {
