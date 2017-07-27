@@ -69,13 +69,13 @@ export class ClientService {
   }
 
 
-  updateClient(client) {
-    const headers = new Headers();
+  updateClient(client, id) {
     const bodyString = JSON.stringify(client);
+    const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
     headers.append( 'Authorization', this.auth);
     const options = new RequestOptions({headers: headers});
-    return this.http.put(this.baseUrl + '/', options)
+    return this.http.put(this.baseUrl + '/' + id, options)
           .map((res: Response) => res.json())
           .catch(this.errorHandler);
   }

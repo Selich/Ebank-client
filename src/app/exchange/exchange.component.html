@@ -11,16 +11,17 @@
         <th>lastName</th>
         <th>jmbg</th>
         <th>password</th>
+        <th>password</th>
       </tr>
     </thead>
-    <tbody *ngFor="let client of clients" (click)="onSelect(client)">
+    <tbody *ngFor="let currency of currencyList" (click)="onSelect(client)">
       <tr>
-        <td>{{client.id}}</td>
-        <td>{{client.firstName}}</td>
-        <td>{{client.lastName}}</td>
-        <td>{{client.jmbg}}</td>
-        <td>{{client.password}}</td>
-        <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash "></span></button>
+        <td>{{currency.id}}</td>
+        <td>{{currency.countryName}}</td>
+        <td>{{currency.currencySymbol}}</td>
+        <td>{{currency.worthFor}}</td>
+        <td>{{currency.buyingRate}}</td>
+        <td>{{currency.sellingRate}}</td>
       </tr>
     </tbody>
   </table>

@@ -75,7 +75,6 @@ export class ClientAccountsComponent implements OnInit {
         this.accounts.splice(i, 1),
           console.log(i);
       })
-    this.dialogRef.close();
 
   }
 

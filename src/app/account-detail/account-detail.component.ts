@@ -1,3 +1,4 @@
+import { Client } from './../models';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { ChartsModule } from 'ng2-charts';
@@ -20,15 +21,22 @@ export class AccountDetailComponent implements OnInit {
   accounts: Account[] = [];
   account: Account;
   selectedAccount: Account;
+  currentClient: Client;
   constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-    // this.accountService.getAccountsById()
-    // .then(accounts => this.accounts = accounts);
-    // .subscribe(resAccountData => this.accounts = resAccountData.slice(1,5));
+
+    this.currentClient = JSON.parse(localStorage.getItem('currentClient'));
+    this.getAccountsByClient(this.currentClient.id);
 
   }
 
+  getAccountsByClient(id) {
+    this.accountService.getAccountsById(id)
+      .subscribe(accounts => this.accounts = accounts);
+      console.log(this.accounts);
+
+  }
 
   onSelect(account: Account) {
     this.selectedAccount = account;

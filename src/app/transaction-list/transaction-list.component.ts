@@ -1,6 +1,6 @@
+import { TransactionService } from './../services/transaction.service';
 import { Component, OnInit } from '@angular/core';
 
-import { TransactionListService } from '../services/transaction-list.service';
 
 import { Transaction } from '../models';
 
@@ -11,15 +11,15 @@ import { Transaction } from '../models';
 })
 export class TransactionListComponent implements OnInit {
 
-  transactions : Transaction[];
+  transactions: Transaction[];
 
-  constructor(private transactionListService : TransactionListService) { }
+  constructor(
+    private transactionService: TransactionService
+  ) { }
 
   ngOnInit() {
-    this.transactionListService.getFake()
-    .then(transactions => this.transactions = transactions);
-   //  this.clientListService.getClients()
-   //  .subscribe(resClientData => this.clients = resClientData);
+    // this.transactionService.getTransactions()
+    // .then(transactions => this.transactions = transactions);
   }
 
 }

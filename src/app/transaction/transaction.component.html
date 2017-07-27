@@ -18,7 +18,7 @@
           <div class="form-group">
             <div class="col-md-6">
               <label for="">Sender Name:</label>
-              <input type="text" formControlName="senderName" class="form-control" id="" placeholder="">
+              <input type="text" formControlName="senderName"  class="form-control" id="" placeholder="">
               <small [hidden]="transactionForm.controls.senderName.valid || (transactionForm.controls.senderName.pristine && !submited)"
                 class="text-danger">
                     Required.
@@ -28,9 +28,9 @@
               <label for="">Payment Code:</label>
               <input type="text" formControlName="paymentCode" class="form-control" id="" placeholder="">
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1" formGroupName="currency">
               <label for="">Currency:</label>
-              <select name="" id="">
+              <select name="" id="" formControlName="currencyName">
                   <option 
                    *ngFor="let currency of currencies" 
                   >{{currency.currencySymbol}}</option>
@@ -59,13 +59,13 @@
             class="text-danger">
                      Must be a number.
               </small>
-          <div class="col-md-6" formGroupName="recieverAccount">
-            <label for="">Reciever Account:</label>
-            <input type="text" formControlName="accountNumber" class="form-control" id="" placeholder="">
-            <small [hidden]="transactionForm.controls.recieverAccount.valid || (transactionForm.controls.recieverAccount.pristine && !submited)"
+          <div class="col-md-6" >
+            <label for="">Receiver Account:</label>
+            <input type="text" formControlName="receiverAccount" class="form-control" id="" placeholder="">
+             <small [hidden]="transactionForm.controls.receiverAccount.valid || (transactionForm.controls.receiverAccount.pristine && !submited)"
               class="text-danger">
               Required.
-              </small>
+              </small> 
           </div>
         </div>
         <div class="container col-lg-10">

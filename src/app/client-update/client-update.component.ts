@@ -60,8 +60,8 @@ export class ClientUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getClientById(this.id);
     this.form();
+    this.getClientById(this.id);
   }
 
   getClientById(id) {
@@ -70,9 +70,9 @@ export class ClientUpdateComponent implements OnInit {
               resClientError  => this.errorMsg = resClientError);
   }
 
-  onSubmit(client) {
+  onSubmit(client, id) {
     console.log(client);
-    this.clientService.updateClient(client)
+    this.clientService.updateClient(client, id)
    .subscribe(resClient => this.client = resClient,
              resClientError  => this.errorMsg = resClientError);
     this.dialogRef.close();

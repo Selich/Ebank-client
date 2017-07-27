@@ -22,12 +22,20 @@
         [hidden]=""><a href="#" routerLink="accountDetail">Account balance</a></li>
         <li [routerLinkActive]="['active']"><a href="#" routerLink="transaction">Transaction</a></li>
         <hr>
-        <li [routerLinkActive]="['active']"><a href="#" routerLink="clients">Client list</a></li>
-        <li [routerLinkActive]="['active']"><a href="#" routerLink="transactions">Transaction list</a></li>
-        <li [routerLinkActive]="['active']"><a href="#" routerLink="create">Create Client</a></li>
+        <li [routerLinkActive]="['active']"
+         *ngIf="currentClient.role.id === 1"
+        ><a href="#" routerLink="clients"
+         *ngIf="currentClient.role.id === 1"
+        >Client list</a></li>
+        <li [routerLinkActive]="['active']"
+         *ngIf="currentClient.role.id === 1"
+        ><a href="#" routerLink="transactions">Transaction list</a></li>
+        <li [routerLinkActive]="['active']"
+         *ngIf="currentClient.role.id === 1"
+        ><a href="#" routerLink="create">Create Client</a></li>
         <hr>
         <li [routerLinkActive]="['active']"><a href="#" routerLink="exchangeRates">Exchange Rates</a></li>
-        <li><a href="#">Export</a></li>
+        <!-- <li><a href="#">Export</a></li> -->
       </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

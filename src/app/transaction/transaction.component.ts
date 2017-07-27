@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import {
   Component,
   OnInit
@@ -38,12 +39,14 @@ export class TransactionComponent implements OnInit {
   currencies: Currency[];
   selectedCurrency: Currency;
   currentClient: Client;
+  errorMsg: string;
 
 
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -71,15 +74,13 @@ export class TransactionComponent implements OnInit {
       senderAccount: this.fb.group({
       accountNumber: ['', Validators.required],
       }),
-      recieverAccount: this.fb.group({
-      accountNumber: ['', Validators.required],
-      }),
+      receiverAccount: ['', Validators.required],
       senderDescription: [''],
       recieverName: ['', Validators.required],
       paymentCode: ['', Validators.required],
-      // currency: this.fb.group({
-      //   currencyName: ['', Validators.required],
-      // }),
+      currency: this.fb.group({
+        currencyName: ['', Validators.required],
+      }),
       // value: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
       value: ['', Validators.required],
       model: ['', Validators.required],
@@ -112,8 +113,11 @@ export class TransactionComponent implements OnInit {
     this.selectedAccount = account;
   }
   onSubmit(transaction: Transaction) {
-    this.transactionService.postTransaction(transaction);
-    console.log(transaction);
+    this.transactionService.postTransaction(transaction)
+     .subscribe(transactionRes => this.transaction = transactionRes,
+             resClientError  => this.errorMsg = resClientError);
+    // location.reload();
+    console.log(JSON.stringify(transaction));
   }
 
   onCurrencySelect() {
