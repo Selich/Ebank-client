@@ -46,11 +46,8 @@ export class TransactionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.accountService.getFake()
-      .then(accounts => this.accounts = accounts);
-
     // .subscribe(resAccountData => this.accounts = resAccountData.slice(1,5));
-    this.getAccountByClient();
+    this.getAccountsByClient();
     this.getCurrencies();
     this.form();
   }
@@ -60,7 +57,7 @@ export class TransactionComponent implements OnInit {
         .then(currecies => this.currencies = currecies);
   }
 
-  getAccountByClient() {
+  getAccountsByClient() {
     this.transactionService.getAccountsByClient()
       .map(accounts => this.accounts = accounts);
 
@@ -69,8 +66,12 @@ export class TransactionComponent implements OnInit {
   form() {
     this.transactionForm = this.fb.group({
       senderName: ['', Validators.required],
-      senderAccount: ['', Validators.required],
-      recieverAccount: ['', Validators.required],
+      senderAccount: this.fb.group({
+      accountNumber: ['', Validators.required],
+      }),
+      recieverAccount: this.fb.group({
+      accountNumber: ['', Validators.required],
+      }),
       senderDescription: [''],
       recieverName: ['', Validators.required],
       paymentCode: ['', Validators.required],

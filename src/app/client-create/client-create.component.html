@@ -53,7 +53,7 @@
       </div> 
       <!--Email,Jmbg,Pass  -->
       <div class="container col-lg-12">
-        <div class="form-group">
+       <div class="form-group">
           <div class="col-md-4">
             <md-input-container class="input-address">
               <input mdInput type="text" placeholder="E-mail" formControlName="email" [(ngModel)]="email" ngControl='email'>
@@ -71,51 +71,6 @@
           </div>
         </div>
       </div>
-      <!-- <div formArrayName="accounts">
-        <div class="container col-lg-12 padding-bottom">
-          <button md-button-raised color="primary" (click)="addAccount()" class="btn pull-right btn-block" style="margin-top: 10px">Add account</button>
-        </div>
-        <div *ngFor="let accounts of clientForm.controls.accounts.controls; let i = index">
-          <div class="panel-heading">
-            <div class="container col-lg-12">
-              <div class="form-group">
-                <h4>Account {{i + 1}}</h4>
-              </div>
-            </div>
-          </div>
-          <div [formGroupName]="i">
-            <div class="container col-lg-12 grey-bg">
-              <div class="form-group">
-                <div class="col-md-4">
-                  <label for="">Bank:</label>
-                  <input type="text" formControlName="bank" class="form-control" ngControl='bank'>
-                </div>
-                <div class="col-md-6">
-                  <label for="">AccountNumber:</label>
-                  <input type="text" formControlName="accountNumber" class="form-control" ngControl='accountNumber'>
-                </div>
-                <div class="col-md-4">
-                  <label for=""></label>
-                  <button *ngIf="i > 0" style="margin-top: 25px" (click)="removeAccount(i)" class="btn btn-danger btn-block btn-sm pull-right">Remove Account</button>
-                </div>
-              </div>
-              <div>
-                <div class="container col-lg-12 grey-bg ">
-                  <div class="form-group">
-                    <div class="col-md-6">
-                      <label for="">AccountBalance:</label>
-                      <input type="text" formControlName="accountBalance" class="form-control" ngControl='accountBalance'>
-                    </div>
-                    <div class="col-md-4">
-                      <label for="">AvailableBalance:</label>
-                      <input type="text" formControlName="availableBalance" class="form-control" ngControl='availableBalance'>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
         <div class="container col-lg-12">
           <div class="col-md-12">
             <label for=""></label>

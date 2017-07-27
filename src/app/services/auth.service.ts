@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 
 import { Client, Role } from './../models';
 
@@ -12,31 +12,28 @@ export class AuthService {
 
   client: Client;
   isLoggedIn = false;
-  URL = 'http://localhost:8080/api/v1/ebank/auth';
+  baseUrl = 'http://localhost:8080/api/v1/ebank/auth';
 
   constructor(private http: Http) {
   }
 
-  login(client) {
-      return this.http.post('http://localhost:8080/api/v1/ebank/auth/login', client)
-                      .map(response => response.json() as Client )
-                      // tslint:disable-next-line:no-shadowed-variable
-                      .map(client => {
-                          if (!Client.isNull(client)) {
-                              this.isLoggedIn = true;
-                              return true;
-                          } else {
-                              this.isLoggedIn = false;
-                              return false;
-                          }
-                      })
+  login(email: String, password: String) {
+    const bodyString = JSON.stringify({ email: email, password: password});
+    const headers = new Headers();
+    headers.append( 'Content-Type', 'application/json');
+    const options = new RequestOptions({headers: headers});
+      return this.http.post(this.baseUrl + '/login', bodyString, options)
+          .map((res: Response) => {
+            const client = res.json();
+            if (client) {
+              localStorage.setItem('currentClient', JSON.stringify(client));
+              console.log(localStorage.getItem('currentClient'));
+            }
+          })
   }
-//   }
 
 
-
-
-
-
-
-}
+  logout() {
+    localStorage.removeItem('currentClient');
+  }
+ }

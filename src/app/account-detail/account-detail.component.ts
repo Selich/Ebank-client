@@ -23,8 +23,8 @@ export class AccountDetailComponent implements OnInit {
   constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-    this.accountService.getFake()
-    .then(accounts => this.accounts = accounts);
+    // this.accountService.getAccountsById()
+    // .then(accounts => this.accounts = accounts);
     // .subscribe(resAccountData => this.accounts = resAccountData.slice(1,5));
 
   }

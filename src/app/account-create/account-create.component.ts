@@ -31,7 +31,7 @@ import {
   templateUrl: './client-update.component.html',
   styleUrls: ['./client-update.component.css']
 })
-export class ClientUpdateComponent implements OnInit {
+export class AccountCreateComponent implements OnInit {
 
   public clientForm: FormGroup;
   bank: Bank;
@@ -54,28 +54,27 @@ export class ClientUpdateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public dialogRef: MdDialogRef < ClientUpdateComponent > ,
-    private accountService: AccountService,
+    public accountService: AccountService ,
     private clientService: ClientService
   ) {}
 
   ngOnInit() {
-    this.getClientById(this.id);
     this.form();
+    this.getClientById(this.id);
   }
 
   getClientById(id) {
+    console.log(id);
     this.clientService.getClientById(id)
     .subscribe(resClientData => this.client = resClientData,
               resClientError  => this.errorMsg = resClientError);
   }
 
+
   onSubmit(client) {
-    console.log(client);
     this.clientService.updateClient(client)
    .subscribe(resClient => this.client = resClient,
              resClientError  => this.errorMsg = resClientError);
-    this.dialogRef.close();
   }
 
   form() {
@@ -90,6 +89,11 @@ export class ClientUpdateComponent implements OnInit {
         city: ['', Validators.required],
         country: ['', Validators.required],
       }),
+      role: this.fb.group({
+        name: ['', Validators.required],
+      }),
+      // accounts: this.fb.array([])
+      // accounts: this.fb.array([])
     });
   }
 }

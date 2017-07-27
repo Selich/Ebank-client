@@ -1,3 +1,4 @@
+import { ClientAccountsComponent } from './../client-accounts/client-accounts.component';
 import { ClientUpdateComponent } from './../client-update/client-update.component';
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
@@ -36,8 +37,13 @@ export class ClientListComponent implements OnInit {
     dialogRef.componentInstance.id = id;
     dialogRef.afterClosed()
     .subscribe(client => this.client = client)
+  }
 
-
+  openAccountsDialog(id) {
+    const dialogRef = this.dialog.open(ClientAccountsComponent);
+    dialogRef.componentInstance.id = id;
+    dialogRef.afterClosed()
+    .subscribe(client => this.client = client)
   }
 
   deleteClient(id, i) {

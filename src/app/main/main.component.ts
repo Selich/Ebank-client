@@ -1,3 +1,4 @@
+import { Client } from './../models';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  currentClient: Client;
 
   constructor() { }
 
   ngOnInit() {
+    this.currentClient = JSON.parse(localStorage.getItem('currentClient'));
+    console.log(this.currentClient);
   }
 
 }

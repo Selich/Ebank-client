@@ -46,19 +46,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.client)
-                    .subscribe(isLoggedIn => {
-                      if (isLoggedIn) {
-                        localStorage.setItem('email', this.client.email);
-                        localStorage.setItem('password', this.client.password);
-                        localStorage.setItem('role', this.client.role.name);
-
-                        console.log(localStorage);
-                        this.router.navigate(['/app'])
-                      };
-                    })
-    console.log(this.client);
-
+    this.authService.login(this.client.email, this.client.password)
+    .subscribe(
+      data => {
+        this.router.navigate(['/app'])
+      },
+    )
+    // this.authService.login(client) .subscribe(resClient => this.client = resClient);
+    // localStorage.setItem('client', 'client')
+    // this.router.navigate(['/app']);
   }
-
 }

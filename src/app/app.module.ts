@@ -18,7 +18,6 @@ import { MdButtonModule,
 import { AccountService } from './services/account.service';
 import { ClientService } from './services/client.service';
 import { TransactionListService } from './services/transaction-list.service';
-import { ClientUpdateService } from './services/client-update.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -36,6 +35,7 @@ import { MainComponent } from './main/main.component';
 import { ClientListFilter } from './client-list/client-list-filter';
 import { ClientUpdateComponent } from './client-update/client-update.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
+import { ClientAccountsComponent } from './client-accounts/client-accounts.component';
 
 export const appRoutes: Routes = [
   {
@@ -65,7 +65,8 @@ export const appRoutes: Routes = [
 @NgModule({
    entryComponents: [
       ClientUpdateComponent,
-      ClientDetailsComponent
+      ClientDetailsComponent,
+      ClientAccountsComponent
 
    ],
   declarations: [
@@ -83,6 +84,7 @@ export const appRoutes: Routes = [
     ClientListFilter,
     ClientUpdateComponent,
     ClientDetailsComponent,
+    ClientAccountsComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,7 +112,6 @@ export const appRoutes: Routes = [
     ClientService,
     TransactionListService,
     AccountService,
-    ClientUpdateService,
     TransactionService,
     AuthGuardService,
     AuthService

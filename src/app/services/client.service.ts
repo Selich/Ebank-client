@@ -1,9 +1,8 @@
-import { Account } from './../models';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 
-import { Client } from '../models';
+import { Client, Account } from '../models';
 import { CLIENTS} from '../mock-accounts';
 
 import 'rxjs/add/operator/map';
@@ -17,6 +16,7 @@ export class ClientService {
 
   constructor(private http: Http) {
   }
+
 
 
   postClient(client: Client) {
