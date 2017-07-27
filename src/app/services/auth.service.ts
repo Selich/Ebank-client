@@ -27,7 +27,7 @@ export class AuthService {
             const client = res.json();
             if (client) {
               localStorage.setItem('currentClient', JSON.stringify(client));
-              console.log(localStorage.getItem('currentClient'));
+              // console.log(localStorage.getItem('currentClient'));
             }
           })
   }

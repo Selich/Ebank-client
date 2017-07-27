@@ -13,10 +13,12 @@ export class AccountService {
   clients: Client[];
   accounts: Account[];
   account: Account;
+  currentClient: Client;
   private baseUrl = 'http://localhost:8080/api/v1/ebank/account';
 
 
   constructor(private http: Http) {
+    this.currentClient = JSON.parse(localStorage.getItem('currentClient'));
   }
 
 
@@ -24,7 +26,8 @@ export class AccountService {
   getAccountsById(id) {
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
-    headers.append( 'Authorization', 'Basic dGVzdHVzZXI6dGVzdHBhc3M=');
+    headers.append( 'Authorization', 'Basic ' + btoa(this.currentClient.email + this.currentClient.password));
+    // console.log(btoa(this.currentClient.email + this.currentClient.password));
     const options = new RequestOptions({headers: headers});
     return this.http.get(this.baseUrl + '/' + id, options)
           .map((res: Response) => res.json())
@@ -42,7 +45,7 @@ export class AccountService {
     const bodyString = JSON.stringify(account);
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
-    headers.append( 'Authorization', 'Basic dGVzdHVzZXI6dGVzdHBhc3M=');
+    headers.append( 'Authorization', 'Basic ' + btoa(this.currentClient.email + this.currentClient.password));
     const options = new RequestOptions({headers: headers});
 
     console.log(account);

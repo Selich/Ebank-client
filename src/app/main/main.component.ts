@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../services/auth.service';
 import { Client } from './../models';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,11 +11,18 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
   currentClient: Client;
 
-  constructor() { }
-
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
   ngOnInit() {
     this.currentClient = JSON.parse(localStorage.getItem('currentClient'));
     console.log(this.currentClient);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

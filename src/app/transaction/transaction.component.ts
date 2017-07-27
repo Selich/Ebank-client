@@ -37,6 +37,7 @@ export class TransactionComponent implements OnInit {
   currency: Currency;
   currencies: Currency[];
   selectedCurrency: Currency;
+  currentClient: Client;
 
 
   constructor(
@@ -46,7 +47,7 @@ export class TransactionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // .subscribe(resAccountData => this.accounts = resAccountData.slice(1,5));
+    this.currentClient = JSON.parse(localStorage.getItem('currentClient'));
     this.getAccountsByClient();
     this.getCurrencies();
     this.form();
@@ -58,7 +59,7 @@ export class TransactionComponent implements OnInit {
   }
 
   getAccountsByClient() {
-    this.transactionService.getAccountsByClient()
+    this.accountService.getAccountsById(this.currentClient.id)
       .map(accounts => this.accounts = accounts);
 
   }
