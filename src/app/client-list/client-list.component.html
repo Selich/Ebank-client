@@ -8,7 +8,8 @@
       <tr>
         <th>#</th>
         <th> </th>
-        <th>Name:</th>
+        <th>First Name:</th>
+        <th>Last Name:</th>
         <th>Jmbg:</th>
         <th>Email:</th>
         <th>Role:</th>
@@ -22,7 +23,9 @@
       <tr>
         <td>{{client.id}}</td>
           <button class="btn btn-default btn-sm" (click)="openAccountsDialog(client.id)"><span class="glyphicon glyphicon-arrow">Accounts</span></button>
-        <td>{{client.firstname}} + {{client.lastname}}</td>
+        <td>{{client.firstname}}</td>
+        <td>{{client.lastName}}</td>
+        <td>{{client.jmbg}}</td>
         <td>{{client.jmbg}}</td>
         <td>{{client.email}}</td>
         <td>{{client.role.name}}</td>

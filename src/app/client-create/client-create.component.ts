@@ -56,6 +56,7 @@ onSubmit(client: Client) {
   this.clientService.postClient(client)
    .subscribe(resClient => this.client = resClient,
              resClientError  => this.errorMsg = resClientError);
+             console.log(JSON.stringify(client));
 }
 
 
@@ -74,17 +75,9 @@ form() {
     role: this.fb.group({
       name: ['', Validators.required],
     }),
-    // accounts: this.fb.array([])
-    // accounts: this.fb.array([])
   });
 }
 
-// export class Account {
-//   accountType: string;
-//   accountNumber: string;
-//   accountBalance: number;
-//   availableBalance: number;
-// }
 initAccounts() {
   return this.fb.group({
     bank: ['', Validators.required],
@@ -93,20 +86,5 @@ initAccounts() {
     availableBalance: ['', Validators.required],
   })
 }
-
-// addAccount() {
-//   const control = < FormArray > this.clientForm.controls['accounts'];
-//   const accCtrl = this.initAccounts();
-//   control.push(this.initAccounts());
-
-// }
-
-// removeAccount(i: number) {
-//   const control = < FormArray > this.clientForm.controls['accounts'];
-//   control.removeAt(i);
-// }
-
-
-
 
 }

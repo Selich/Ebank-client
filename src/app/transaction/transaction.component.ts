@@ -48,9 +48,9 @@ export class TransactionComponent implements OnInit {
 
   ngOnInit() {
     this.currentClient = JSON.parse(localStorage.getItem('currentClient'));
-    this.getAccountsByClient();
     this.getCurrencies();
     this.form();
+    this.getAccountsByClient(this.currentClient.id);
   }
 
   getCurrencies() {
@@ -58,9 +58,10 @@ export class TransactionComponent implements OnInit {
         .then(currecies => this.currencies = currecies);
   }
 
-  getAccountsByClient() {
+  getAccountsByClient(id) {
     this.accountService.getAccountsById(this.currentClient.id)
-      .map(accounts => this.accounts = accounts);
+      .subscribe(accounts => this.accounts = accounts);
+      console.log(this.accounts);
 
   }
 
@@ -76,8 +77,11 @@ export class TransactionComponent implements OnInit {
       senderDescription: [''],
       recieverName: ['', Validators.required],
       paymentCode: ['', Validators.required],
-      currency: ['', Validators.required],
-      value: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
+      // currency: this.fb.group({
+      //   currencyName: ['', Validators.required],
+      // }),
+      // value: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
+      value: ['', Validators.required],
       model: ['', Validators.required],
       referenceNumber: ['', Validators.required]
     })

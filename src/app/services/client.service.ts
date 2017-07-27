@@ -12,11 +12,13 @@ export class ClientService {
 
   clients: Client[];
   currentClient: Client;
+  auth;
   private baseUrl = 'http://localhost:8080/api/v1/ebank/client';
 
 
   constructor(private http: Http) {
     this.currentClient = JSON.parse(localStorage.getItem('currentClient'));
+    this.auth = 'Basic ' + btoa(this.currentClient.email + ':' + this.currentClient.password);
   }
 
 
@@ -27,7 +29,7 @@ export class ClientService {
     const bodyString = JSON.stringify(client);
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
-    headers.append( 'Authorization', 'Basic ' + btoa(this.currentClient.email + this.currentClient.password));
+    headers.append( 'Authorization', this.auth);
     const options = new RequestOptions({headers: headers});
 
     return this.http.post(this.baseUrl + '/create', bodyString, options)
@@ -39,10 +41,7 @@ export class ClientService {
   getClients() {
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
-    const auth = this.currentClient.email + ':' + this.currentClient.password;
-    const authB = 'Basic ' + btoa(auth);
-    console.log(authB);
-    headers.append( 'Authorization', authB);
+    headers.append( 'Authorization', this.auth);
     const options = new RequestOptions({headers: headers});
     return this.http.get(this.baseUrl + '/list', options)
           .map((res: Response) => res.json())
@@ -52,7 +51,7 @@ export class ClientService {
   deleteClient(id) {
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
-    headers.append( 'Authorization', 'Basic ' + btoa(this.currentClient.email + this.currentClient.password));
+    headers.append( 'Authorization', this.auth);
     const options = new RequestOptions({headers: headers});
     return this.http.delete(this.baseUrl + '/' + id, options)
           .map((res: Response) => res.json())
@@ -62,7 +61,7 @@ export class ClientService {
   getClientById(id) {
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
-    headers.append( 'Authorization', 'Basic ' + btoa(this.currentClient.email + this.currentClient.password));
+    headers.append( 'Authorization', this.auth);
     const options = new RequestOptions({headers: headers});
     return this.http.get(this.baseUrl + '/' + id, options)
           .map((res: Response) => res.json())
@@ -74,7 +73,7 @@ export class ClientService {
     const headers = new Headers();
     const bodyString = JSON.stringify(client);
     headers.append( 'Content-Type', 'application/json');
-    headers.append( 'Authorization', 'Basic ' + btoa(this.currentClient.email + this.currentClient.password));
+    headers.append( 'Authorization', this.auth);
     const options = new RequestOptions({headers: headers});
     return this.http.put(this.baseUrl + '/', options)
           .map((res: Response) => res.json())

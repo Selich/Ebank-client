@@ -14,20 +14,22 @@ export class AccountService {
   accounts: Account[];
   account: Account;
   currentClient: Client;
+  auth;
   private baseUrl = 'http://localhost:8080/api/v1/ebank/account';
 
 
   constructor(private http: Http) {
     this.currentClient = JSON.parse(localStorage.getItem('currentClient'));
+    this.auth = 'Basic ' + btoa(this.currentClient.email + ':' + this.currentClient.password);
   }
 
 
 
   getAccountsById(id) {
+    console.log(id);
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
-    headers.append( 'Authorization', 'Basic ' + btoa(this.currentClient.email + this.currentClient.password));
-    // console.log(btoa(this.currentClient.email + this.currentClient.password));
+    headers.append( 'Authorization', this.auth);
     const options = new RequestOptions({headers: headers});
     return this.http.get(this.baseUrl + '/' + id, options)
           .map((res: Response) => res.json())
@@ -40,19 +42,24 @@ export class AccountService {
   }
 
   postAccount(id, account) {
-    // const username = 'testuser';
-    // const password = 'testpass';
     const bodyString = JSON.stringify(account);
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
-    headers.append( 'Authorization', 'Basic ' + btoa(this.currentClient.email + this.currentClient.password));
+    headers.append( 'Authorization', this.auth);
     const options = new RequestOptions({headers: headers});
-
-    console.log(account);
-
-    return this.http.post(this.baseUrl + '/' + id, bodyString, options)
+    console.log(bodyString);
+    return this.http.put(this.baseUrl + '/' + id, bodyString, options)
           .map((res: Response) => res.json())
           .catch(this.errorHandler);
   }
 
+  deleteAccount(id) {
+    const headers = new Headers();
+    headers.append( 'Content-Type', 'application/json');
+    headers.append( 'Authorization', this.auth);
+    const options = new RequestOptions({headers: headers});
+    return this.http.delete(this.baseUrl + '/' + id, options)
+          .map((res: Response) => res.json())
+          .catch(this.errorHandler);
+  }
 }

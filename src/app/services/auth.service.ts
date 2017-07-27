@@ -18,7 +18,9 @@ export class AuthService {
   }
 
   login(email: String, password: String) {
-    const bodyString = JSON.stringify({ email: email, password: password});
+
+    const bodyString = JSON.stringify({email: email, password: password});
+    console.log(bodyString);
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
     const options = new RequestOptions({headers: headers});

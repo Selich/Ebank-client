@@ -1,11 +1,11 @@
 <h2 class="page-header">Create Account</h2>
-<form [formGroup]="accountForm" (ngSubmit)="onSubmit(accountForm.value)">
-  <div class="container">
-    <div class="row">
+<div class="container">
+  <div class="row">
 
-      <div class="container col-lg-12 padding-bottom">
+    <div class="container col-lg-6 padding-bottom">
+      <form [formGroup]="accountForm" (ngSubmit)="onSubmit(accountForm.value)">
         <div class="form-group">
-          <div class="col-md-6"  formGroupName="bank">
+          <div class="col-md-6" formGroupName="bank">
             <label for="">Bank:</label>
             <input type="text" formControlName="bankName" class="form-control" ngControl='bank'>
           </div>
@@ -27,17 +27,16 @@
           </div>
         </div>
         <button md-raised-button color="accent" type="submit" [disabled]="!accountForm.valid" class="btn btn-block" value="Submit">Submit</button>
+      </form>
+    </div>
+    <div class="container col-lg-6 padding-bottom">
+      <div class="grid grid-pad container-fluid col-lg-10">
+        <div class="col-md-6  account" *ngFor="let account of accounts; let i = index"[class.selected]="account === selectedAccount">
+          <p>Bank: {{account.bank.bankName}}</p>
+          <h5>Available: {{account.availableBalance}}</h5>
+          <button class="btn btn-danger btn-sm" (click) = "deleteAccount(account.id, i)">Delete <span class="glyphicon glyphicon-trash "></span></button>
+        </div>
       </div>
     </div>
-  </div>
-</form>
-
-<div class="grid grid-pad container-fluid col-lg-10">
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus voluptate quasi tenetur! Praesentium doloremque odit expedita
-  itaque consequuntur ad, laborum in eaque neque nulla voluptates odio, libero dolore inventore. Tempora!
-  <div class="col-sm-3  account" *ngFor="let account of accounts" (click)="onSelect(account)" [class.selected]="account === selectedAccount">
-    <h5>Bank: {{account.bank.bankName}}</h5>
-    <h5>Account: {{account.accountNumber}}</h5>
-    <h5>Balance: {{account.accountBalance}}</h5>
   </div>
 </div>
