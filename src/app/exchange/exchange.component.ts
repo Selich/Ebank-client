@@ -21,7 +21,7 @@ export class ExchangeComponent implements OnInit {
   }
 
   getExchange() {
-    this.exchangeService.getClients()
+    this.exchangeService.getCurrencies()
     .subscribe(resExchange => this.exchangeList = resExchange,
               resClientError  => this.errorMsg = resClientError);
     console.log(this.errorMsg);

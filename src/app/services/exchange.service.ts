@@ -23,7 +23,7 @@ export class ExchangeService {
 
 
 
-  getClients() {
+  getCurrencies() {
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');
     headers.append( 'Authorization', this.auth);

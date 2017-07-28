@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
 @Injectable()
-export class AuthGuardService implements CanActivate {
+export class AdminGuardService implements CanActivate {
 
   constructor(
     private router: Router
@@ -10,11 +10,11 @@ export class AuthGuardService implements CanActivate {
 
 
   canActivate() {
-    if (localStorage.getItem('currentClient')) {
+    if (localStorage.getItem('currentClient.role.name') === 'Admin') {
       return true;
     }
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/app']);
     return false
 
   }

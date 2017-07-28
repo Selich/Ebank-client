@@ -78,13 +78,4 @@ form() {
   });
 }
 
-initAccounts() {
-  return this.fb.group({
-    bank: ['', Validators.required],
-    accountNumber: ['', Validators.required],
-    accountBalance: ['', Validators.required],
-    availableBalance: ['', Validators.required],
-  })
-}
-
 }

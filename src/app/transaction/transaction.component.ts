@@ -1,3 +1,4 @@
+import { ExchangeService } from './../services/exchange.service';
 import { Router } from '@angular/router';
 import {
   Component,
@@ -46,6 +47,7 @@ export class TransactionComponent implements OnInit {
     private fb: FormBuilder,
     private accountService: AccountService,
     private transactionService: TransactionService,
+    private exchangeService: ExchangeService,
     private router: Router
   ) {}
 
@@ -57,8 +59,11 @@ export class TransactionComponent implements OnInit {
   }
 
   getCurrencies() {
-    this.transactionService.getExchangeRate()
-        .then(currecies => this.currencies = currecies);
+    this.exchangeService.getCurrencies()
+     .subscribe(currenciesRes => this.currencies = currenciesRes,
+             resCurreniesError  => this.errorMsg = resCurreniesError);
+    // location.reload();
+    console.log(JSON.stringify(this.currencies));
   }
 
   getAccountsByClient(id) {
@@ -79,7 +84,7 @@ export class TransactionComponent implements OnInit {
       recieverName: ['', Validators.required],
       paymentCode: ['', Validators.required],
       currency: this.fb.group({
-        currencyName: ['', Validators.required],
+        currencySymbol: ['', Validators.required],
       }),
       // value: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
       value: ['', Validators.required],

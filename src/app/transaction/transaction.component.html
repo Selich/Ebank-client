@@ -30,9 +30,12 @@
             </div>
             <div class="col-md-1" formGroupName="currency">
               <label for="">Currency:</label>
-              <select name="" id="" formControlName="currencyName">
+              <select name="" id="" 
+                    formControlName="currencySymbol"
+                >
                   <option 
                    *ngFor="let currency of currencies" 
+                   [value]="currency.currencySymbol"
                   >{{currency.currencySymbol}}</option>
                </select>
               <!-- <small [hidden]="transactionForm.controls.currency.valid || (transactionForm.controls.currency.pristine && !submited)" class="text-danger">

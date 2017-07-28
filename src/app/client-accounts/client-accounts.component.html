@@ -34,6 +34,8 @@
       <div class="grid grid-pad container-fluid col-lg-10">
         <div class="col-md-6  account" *ngFor="let account of accounts; let i = index"[class.selected]="account === selectedAccount">
           <p>Bank: {{account.bank.bankName}}</p>
+          <h5>Account Number: {{account.accountNumber}}</h5>
+          <h5>Balance: {{account.accountBalance}}</h5>
           <h5>Available: {{account.availableBalance}}</h5>
           <button class="btn btn-danger btn-sm" (click) = "deleteAccount(account.id, i)">Delete <span class="glyphicon glyphicon-trash "></span></button>
         </div>

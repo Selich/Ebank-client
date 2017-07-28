@@ -1,3 +1,5 @@
+import { AdminGuardService } from './services/adminguard.service';
+import { ExchangeService } from './services/exchange.service';
 import { AuthGuardService } from './services/authguard.service';
 import { AuthService } from './services/auth.service';
 import { TransactionService } from './services/transaction.service';
@@ -53,12 +55,14 @@ export const appRoutes: Routes = [
     component: MainComponent,
     children: [
       { path: '', redirectTo: 'accounts', pathMatch: 'full'},
-      { path: 'clients', component: ClientListComponent},
-      { path: 'transactions', component: TransactionListComponent},
-      { path: 'create', component: ClientCreateComponent},
       { path: 'accountDetail', component: AccountDetailComponent},
       { path: 'transaction', component: TransactionComponent},
+      //
       { path: 'exchangeRates', component: ExchangeComponent},
+      // admin
+      { path: 'clients', canActivate: [AdminGuardService], component: ClientListComponent},
+      { path: 'transactions', canActivate: [AdminGuardService], component: TransactionListComponent},
+      { path: 'create', canActivate: [AdminGuardService],  component: ClientCreateComponent},
     ]
   },
 ];
@@ -112,9 +116,11 @@ export const appRoutes: Routes = [
     ClientService,
     TransactionListService,
     AccountService,
+    AdminGuardService,
     TransactionService,
     AuthGuardService,
-    AuthService
+    AuthService,
+    ExchangeService
   ],
   bootstrap: [AppComponent]
 })

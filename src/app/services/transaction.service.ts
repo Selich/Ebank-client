@@ -20,9 +20,9 @@ export class TransactionService {
     this.auth = 'Basic ' + btoa(this.currentClient.email + ':' + this.currentClient.password);
   }
 
-  getExchangeRate() {
-     return Promise.resolve(EXCHANGERATES)
-  }
+  // getExchangeRate() {
+  //    return Promise.resolve(EXCHANGERATES)
+  // }
 
   postTransaction(transaction: Transaction) {
     const bodyString = JSON.stringify(transaction);
