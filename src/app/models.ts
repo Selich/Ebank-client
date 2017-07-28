@@ -39,6 +39,8 @@ export class Address {
 }
 
 export class Bank {
+  id: number;
+  pib: string;
   bankName: string;
 }
 
@@ -51,7 +53,7 @@ export class Transaction {
   currency: Currency;
   value: number;
   model: string;
-  refereceNumber: string;
+  referenceNumber: string;
 }
 
 export class Currency {

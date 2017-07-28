@@ -1,24 +1,21 @@
 <h2 class="page-header">Exchange Rates</h2>
-<form class="  form">
-    <input type="text" class="form-control" placeholder="Search...">
-</form>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
         <th>#</th>
-        <th>firstName</th>
-        <th>lastName</th>
-        <th>jmbg</th>
-        <th>password</th>
-        <th>password</th>
+        <th>Symbol: </th>
+        <th>Country Name: </th>
+        <th>Worth For: </th>
+        <th>Buying Rate: </th>
+        <th>Selling Rate:</th>
       </tr>
     </thead>
-    <tbody *ngFor="let currency of currencyList" (click)="onSelect(client)">
+    <tbody *ngFor="let currency of currencies">
       <tr>
         <td>{{currency.id}}</td>
-        <td>{{currency.countryName}}</td>
         <td>{{currency.currencySymbol}}</td>
+        <td>{{currency.countryName}}</td>
         <td>{{currency.worthFor}}</td>
         <td>{{currency.buyingRate}}</td>
         <td>{{currency.sellingRate}}</td>

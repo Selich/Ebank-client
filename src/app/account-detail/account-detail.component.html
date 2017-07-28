@@ -1,7 +1,7 @@
 <h2 class="page-header">Account: </h2>
 <div class="container">
   <div class="row">
-    <div class="container col-lg-6 padding-bottom">
+    <div class="container col-lg-4 padding-bottom">
       <div class="grid grid-pad container-fluid col-lg-10">
         <div class="col-md-6  account" *ngFor="let account of accounts; let i = index" (click)="onSelect(account)" [class.selected]="account === selectedAccount">
           <p>Bank: {{account.bank.bankName}}</p>
@@ -11,29 +11,35 @@
         </div>
       </div>
     </div>
-    <div class="container col-lg-6 padding-bottom">
-      <div class="grid grid-pad container-fluid col-lg-10">
-        <div class="row" *ngIf="selectedAccount">
+    <div class="container col-lg-8 padding-bottom">
+      <div class="container col-md-12 padding-bottom">
+        <div class="grid grid-pad container-fluid col-lg-10">
+          <div class="row" *ngIf="selectedAccount">
 
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Sender: </th>
-                  <th>Value: </th>
-                  <th>Reciever: </th>
-                </tr>
-              </thead>
-              <tbody *ngFor="let transaction of transactions; let i = index" class="touch">
-                <tr>
-                  <td>{{transaction.id}}</td>
-                  <td>{{transaction.selectedAccount.accountNumber}}</td>
-                  <td>{{transaction.value}}</td>
-                  <td>{{transaction.receiverAccount}}</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Sender: </th>
+                    <th>Value: </th>
+                    <th>Date: </th>
+                    <th>Reciever: </th>
+                    <th>Payment Code: </th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let receivingTransaction of receivingTransactions; let i = index" class="touch">
+                  <tr>
+                    <td>{{receivingTransaction.id}}</td>
+                    <td>{{receivingTransaction.senderAccount.accountNumber}}</td>
+                    <td>{{receivingTransaction.value}}</td>
+                    <td>{{receivingTransaction.transactionDate}}</td>
+                    <td>{{receivingTransaction.receiverAccount}}</td>
+                    <td>{{receivingTransaction.paymentCode}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
         </div>

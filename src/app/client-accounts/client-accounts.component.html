@@ -1,20 +1,27 @@
-<h2 class="page-header">Create Account</h2>
+<h2 class="page-header">
+  Create Account</h2>
 <div class="container">
   <div class="row">
 
     <div class="container col-lg-6 padding-bottom">
       <form [formGroup]="accountForm" (ngSubmit)="onSubmit(accountForm.value)">
         <div class="form-group">
-          <div class="col-md-6" formGroupName="bank">
-            <label for="">Bank:</label>
-            <input type="text" formControlName="bankName" class="form-control" ngControl='bank'>
-          </div>
-          <div class="col-md-6">
+          <div class="col-md-8">
             <label for="">AccountNumber:</label>
             <input type="text" formControlName="accountNumber" class="form-control" ngControl='accountNumber'>
           </div>
+          <div class="col-md-4"  formGroupName="bank">
+            <label for="">Bank:</label>
+            <select style="margin-top: 25px; max-width:90%;"name="" id="" 
+                  formControlName="bankName" placeholder="Bank ">
+                  <option 
+                   *ngFor="let bank of banks" 
+                   [value]="bank.bankName"
+                  >{{bank.bankName}}</option>
+               </select>
+          </div>
         </div>
-        <div class="container col-lg-12 grey-bg ">
+        <div class="container col-lg-8 grey-bg ">
           <div class="form-group">
             <div class="col-md-6">
               <label for="">AccountBalance:</label>
@@ -32,12 +39,12 @@
     </div>
     <div class="container col-lg-6 padding-bottom">
       <div class="grid grid-pad container-fluid col-lg-10">
-        <div class="col-md-6  account" *ngFor="let account of accounts; let i = index"[class.selected]="account === selectedAccount">
+        <div class="col-md-6  account" *ngFor="let account of accounts; let i = index" [class.selected]="account === selectedAccount">
           <p>Bank: {{account.bank.bankName}}</p>
           <h5>Account Number: {{account.accountNumber}}</h5>
           <h5>Balance: {{account.accountBalance}}</h5>
           <h5>Available: {{account.availableBalance}}</h5>
-          <button class="btn btn-danger btn-sm" (click) = "deleteAccount(account.id, i)">Delete <span class="glyphicon glyphicon-trash "></span></button>
+          <button class="btn btn-danger btn-sm" (click)="deleteAccount(account.id, i)">Delete <span class="glyphicon glyphicon-trash "></span></button>
         </div>
       </div>
     </div>

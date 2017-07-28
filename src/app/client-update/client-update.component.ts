@@ -67,15 +67,20 @@ export class ClientUpdateComponent implements OnInit {
   getClientById(id) {
     this.clientService.getClientById(id)
     .subscribe(resClientData => this.client = resClientData,
-              resClientError  => this.errorMsg = resClientError);
+              resClientError  => this.errorMsg = resClientError
+              );
   }
 
   onSubmit(client, id) {
-    console.log(client);
+    console.log(id);
     this.clientService.updateClient(client, id)
-   .subscribe(resClient => this.client = resClient,
+   .subscribe(resClient => {
+         this.client = resClient
+        console.log(resClient);
+        },
              resClientError  => this.errorMsg = resClientError);
     this.dialogRef.close();
+    // location.reload();
   }
 
   form() {

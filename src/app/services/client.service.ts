@@ -75,7 +75,7 @@ export class ClientService {
     headers.append( 'Content-Type', 'application/json');
     headers.append( 'Authorization', this.auth);
     const options = new RequestOptions({headers: headers});
-    return this.http.put(this.baseUrl + '/' + id, options)
+    return this.http.put(this.baseUrl + '/' + id, bodyString, options)
           .map((res: Response) => res.json())
           .catch(this.errorHandler);
   }

@@ -16,7 +16,10 @@ export class AccountDetailComponent implements OnInit {
   accounts: Account[] = [];
   account: Account;
   transaction: Transaction;
-  transactions: Transaction[];
+  sendingTransactions: Transaction[];
+  sendingTransaction: Transaction;
+  receivingTransactions: Transaction[];
+  receivingTransaction: Transaction;
   selectedAccount: Account;
   currentClient: Client;
   constructor(
@@ -37,16 +40,26 @@ export class AccountDetailComponent implements OnInit {
       console.log(this.accounts);
 
   }
-  getTransactionsByAccount(accountNumber) {
-    this.transactionService.getTransactionByAccount(accountNumber)
-      .subscribe(transactionsRes => this.transactions = transactionsRes);
-      console.log(this.transactions);
+  // getSendingTransactionsByAccount(accountNumber) {
+  //   this.transactionService.getSendingTransactionByAccount(accountNumber)
+  //     .subscribe(transactionsRes => {
+  //       this.sendingTransactions = transactionsRes
+  //       console.log(transactionsRes);
+  //     });
+  //     // console.log(this.sendingTransactions);
+  // }
 
+  getReceivingTransactionsByAccount(accountNumber) {
+    this.transactionService.getReceivingTransactionByAccount(accountNumber)
+      .subscribe(transactionsRes => {
+       this.receivingTransactions = transactionsRes
+       });
   }
 
 
   onSelect(account: Account) {
     this.selectedAccount = account;
-    this.getTransactionsByAccount(this.selectedAccount.accountNumber);
+    // this.getSendingTransactionsByAccount(this.selectedAccount.accountNumber);
+    this.getReceivingTransactionsByAccount(this.selectedAccount.accountNumber);
   }
 }

@@ -1,3 +1,5 @@
+import { TransactionListComponent } from './../transaction-list/transaction-list.component';
+import { BankService } from './../bank.service';
 import {
   Account,
   Address,
@@ -34,7 +36,6 @@ import {
 export class ClientAccountsComponent implements OnInit {
 
   public accountForm: FormGroup;
-  bank: Bank;
   client: Client;
   account: Account;
   address: Address;
@@ -42,17 +43,22 @@ export class ClientAccountsComponent implements OnInit {
   errorMsg: string;
   accounts: Account[];
   id: number;
+  banks: Bank[];
+  bank: Bank;
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: MdDialogRef < ClientAccountsComponent > ,
     private accountService: AccountService,
-    private clientService: ClientService
+    private bankService: BankService,
+    private clientService: ClientService,
+    public dialog: MdDialog
   ) {}
 
   ngOnInit() {
     this.form();
     this.getAccountsById(this.id);
+    this.getBanks();
   }
 
   onSubmit(account) {
@@ -61,6 +67,15 @@ export class ClientAccountsComponent implements OnInit {
       .subscribe(res => this.account = res);
     this.dialogRef.close();
     console.log(this.account);
+  }
+  onSelect() {
+  }
+
+  getBanks() {
+    this.bankService.getBanks()
+    .subscribe(resData => this.banks = resData,
+              resError  => this.errorMsg = resError);
+    console.log(this.errorMsg);
   }
 
   getAccountsById(id) {

@@ -1,3 +1,4 @@
+import { BankService } from './bank.service';
 import { AdminGuardService } from './services/adminguard.service';
 import { ExchangeService } from './services/exchange.service';
 import { AuthGuardService } from './services/authguard.service';
@@ -5,7 +6,7 @@ import { AuthService } from './services/auth.service';
 import { TransactionService } from './services/transaction.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
 import { RouterModule, Routes } from '@angular/router';
@@ -38,6 +39,7 @@ import { ClientListFilter } from './client-list/client-list-filter';
 import { ClientUpdateComponent } from './client-update/client-update.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { ClientAccountsComponent } from './client-accounts/client-accounts.component';
+import { BankCreateComponent } from './bank-create/bank-create.component';
 
 export const appRoutes: Routes = [
   {
@@ -63,6 +65,7 @@ export const appRoutes: Routes = [
       { path: 'clients', canActivate: [AdminGuardService], component: ClientListComponent},
       { path: 'transactions', canActivate: [AdminGuardService], component: TransactionListComponent},
       { path: 'create', canActivate: [AdminGuardService],  component: ClientCreateComponent},
+      { path: 'bank', canActivate: [AdminGuardService],  component: BankCreateComponent},
     ]
   },
 ];
@@ -89,6 +92,7 @@ export const appRoutes: Routes = [
     ClientUpdateComponent,
     ClientDetailsComponent,
     ClientAccountsComponent,
+    BankCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,7 +124,8 @@ export const appRoutes: Routes = [
     TransactionService,
     AuthGuardService,
     AuthService,
-    ExchangeService
+    ExchangeService,
+    BankService
   ],
   bootstrap: [AppComponent]
 })

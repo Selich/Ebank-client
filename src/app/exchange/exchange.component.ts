@@ -10,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExchangeComponent implements OnInit {
 
-  exchangeList: Currency[];
+  currencies: Currency[];
+  currency: Currency;
   errorMsg: String;
   constructor(
       private exchangeService: ExchangeService
@@ -22,7 +23,7 @@ export class ExchangeComponent implements OnInit {
 
   getExchange() {
     this.exchangeService.getCurrencies()
-    .subscribe(resExchange => this.exchangeList = resExchange,
+    .subscribe(resExchange => this.currencies = resExchange,
               resClientError  => this.errorMsg = resClientError);
     console.log(this.errorMsg);
   }

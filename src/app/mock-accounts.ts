@@ -8,7 +8,9 @@ import {
 
 export const ACCOUNTS: Account[] = [
   {
+    id:1,
     bank: {
+      PIB: "1321",
       bankName: "Komercijala"
     },
     accountNumber: "1231321",
@@ -16,7 +18,9 @@ export const ACCOUNTS: Account[] = [
     availableBalance: 13300
   },
   {
+    id:2,
     bank: {
+      PIB: "12323",
       bankName: "Komercijala"
     },
     accountNumber: "12321",
@@ -24,7 +28,9 @@ export const ACCOUNTS: Account[] = [
     availableBalance: 13300
   },
   {
+    id:3,
     bank: {
+      PIB: "13123",
       bankName: "Komercijala"
     },
     accountNumber: "12321",
@@ -153,7 +159,7 @@ export const TRANSACTIONS: Transaction[] = [
     receiverAccount: ACCOUNTS[1],
     currency: EXCHANGERATES[0],
     model: '92',
-    refereceNumber: '1232',
+    referenceNumber: '1232',
     value: 1240
   }
 ]

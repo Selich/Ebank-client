@@ -1,5 +1,31 @@
 import { TransactionService } from './../services/transaction.service';
-import { Component, OnInit } from '@angular/core';
+import { BankService } from './../bank.service';
+import {
+  Account,
+  Address,
+  Bank,
+  Client,
+  Role
+} from '../models';
+import {
+  AccountService
+} from '../services/account.service';
+import {
+  ClientService
+} from '../services/client.service';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import {
+  MdDialog,
+  MdDialogRef
+} from '@angular/material';
 
 
 import { Transaction } from '../models';
@@ -11,15 +37,43 @@ import { Transaction } from '../models';
 })
 export class TransactionListComponent implements OnInit {
 
+  transaction: Transaction;
   transactions: Transaction[];
+  errorMsg: string;
+  client: Client;
+  account: Account;
+  address: Address;
+  role: Role;
+  accounts: Account[];
+  id: number;
+  banks: Bank[];
+  bank: Bank;
 
   constructor(
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private accountService: AccountService,
+    public dialogRef: MdDialogRef < TransactionListComponent > ,
   ) { }
 
-  ngOnInit() {
-    // this.transactionService.getTransactions()
-    // .then(transactions => this.transactions = transactions);
+  getAccountsById(id) {
+    this.accountService.getAccountsById(id)
+      .subscribe(resAccounts => {
+        this.accounts = resAccounts,
+        console.log(resAccounts)
+      },
+        resError => this.errorMsg = resError);
   }
+  ngOnInit() {
+    // this.getTransactionsById();
+  }
+
+    // this.transactionService.getAccountsById(id)
+    //   .subscribe(resAccounts => {
+    //     this.accounts = resAccounts,
+    //     console.log(resAccounts)
+    //   },
+    //     resError => this.errorMsg = resError);
+
+
 
 }

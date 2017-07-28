@@ -1,0 +1,30 @@
+<h2 class="page-header">Create Bank</h2>
+<div class="container">
+  <div class="row">
+
+    <div class="container col-lg-6 padding-bottom">
+      <form [formGroup]="bankForm" (ngSubmit)="onSubmit(bankForm.value)">
+        <div class="form-group">
+          <div class="col-md-6">
+            <label for="">Bank:</label>
+            <input type="text" formControlName="bankName" class="form-control" ngControl='bank'>
+          </div>
+          <div class="col-md-6">
+            <label for="">PIB:</label>
+            <input type="text" formControlName="pib" class="form-control" ngControl='pib'>
+          </div>
+        </div>
+        <hr>
+        <button md-raised-button color="accent" type="submit" [disabled]="!bankForm.valid" class="btn btn-block" value="Submit">Submit</button>
+      </form>
+    </div>
+    <div class="container col-lg-6 padding-bottom">
+      <div class="grid grid-pad container-fluid col-lg-10">
+        <div class="col-md-6  account" *ngFor="let bank of banks; let i = index"[class.selected]="account === selectedAccount">
+          <h5>Bank Name: </h5><h3>{{bank.bankName}}</h3>
+          <button class="btn btn-danger btn-sm" (click) = "deleteAccount(bank.id, i)">Delete <span class="glyphicon glyphicon-trash "></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

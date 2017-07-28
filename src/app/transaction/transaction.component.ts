@@ -1,5 +1,9 @@
-import { ExchangeService } from './../services/exchange.service';
-import { Router } from '@angular/router';
+import {
+  ExchangeService
+} from './../services/exchange.service';
+import {
+  Router
+} from '@angular/router';
 import {
   Component,
   OnInit
@@ -8,7 +12,9 @@ import {
   FormBuilder,
   FormGroup,
   FormControl,
-  Validators
+  Validators,
+  // AbstractControl,
+  // ValidatorFn
 } from '@angular/forms';
 import {
   AccountService
@@ -48,7 +54,8 @@ export class TransactionComponent implements OnInit {
     private accountService: AccountService,
     private transactionService: TransactionService,
     private exchangeService: ExchangeService,
-    private router: Router
+    private router: Router,
+    // private control: AbstractControl
   ) {}
 
   ngOnInit() {
@@ -60,8 +67,8 @@ export class TransactionComponent implements OnInit {
 
   getCurrencies() {
     this.exchangeService.getCurrencies()
-     .subscribe(currenciesRes => this.currencies = currenciesRes,
-             resCurreniesError  => this.errorMsg = resCurreniesError);
+      .subscribe(currenciesRes => this.currencies = currenciesRes,
+        resCurreniesError => this.errorMsg = resCurreniesError);
     // location.reload();
     console.log(JSON.stringify(this.currencies));
   }
@@ -69,7 +76,7 @@ export class TransactionComponent implements OnInit {
   getAccountsByClient(id) {
     this.accountService.getAccountsById(this.currentClient.id)
       .subscribe(accounts => this.accounts = accounts);
-      console.log(this.accounts);
+    console.log(this.accounts);
 
   }
 
@@ -77,11 +84,11 @@ export class TransactionComponent implements OnInit {
     this.transactionForm = this.fb.group({
       senderName: ['', Validators.required],
       senderAccount: this.fb.group({
-      accountNumber: ['', Validators.required],
+        accountNumber: ['', Validators.required],
       }),
       receiverAccount: ['', Validators.required],
       senderDescription: [''],
-      recieverName: ['', Validators.required],
+      receiverName: ['', Validators.required],
       paymentCode: ['', Validators.required],
       currency: this.fb.group({
         currencySymbol: ['', Validators.required],
@@ -92,42 +99,51 @@ export class TransactionComponent implements OnInit {
       referenceNumber: ['', Validators.required]
     })
   }
-
-  checksumValidator(model: string, referenceNumber: string) {
-    const m = Number(model);
-    const firstK = Number(referenceNumber.substr(0, 2));
-    const lastK = referenceNumber.substr(2, referenceNumber.length);
-    let p = '';
-    let i: number;
-    for (i = 0; i < lastK.length; i++) {
-      if (lastK[i].match(/\d+/)) {
-        p += lastK[i]
-      } else if (lastK[i].match(/\A+/)) {
-        p += String(lastK[i].charCodeAt(0) - 55);
-      } else {
-        break;
-      }
-    }
-    const decR = (Number(p) * 100) / m * 10 % 10 / 10;
-    let b = m + 1 - Math.round(decR * m);
-    b = Number((('0' + b).slice(-2)))
-    return (b === firstK);
-
-  }
+  // checksumValidator(model: string, referenceNumber: string): ValidatorFn {
+  //   return (control: AbstractControl): {
+  //     [key: string]: any
+  //   } => {
+  //     const m = Number(model);
+  //     const firstK = Number(referenceNumber.substr(0, 2));
+  //     const lastK = referenceNumber.substr(2, referenceNumber.length);
+  //     let p = '';
+  //     let i: number;
+  //     for (i = 0; i < lastK.length; i++) {
+  //       if (lastK[i].match(/\d+/)) {
+  //         p += lastK[i]
+  //       } else if (lastK[i].match(/\A+/)) {
+  //         p += String(lastK[i].charCodeAt(0) - 55);
+  //       } else {
+  //         break;
+  //       }
+  //     }
+  //     const decR = (Number(p) * 100) / m * 10 % 10 / 10;
+  //     let b = m + 1 - Math.round(decR * m);
+  //     b = Number((('0' + b).slice(-2)))
+  //     if (b === firstK) {
+  //       return {
+  //         valid: true
+  //       }
+  //     }
+  //     return {
+  //       valid: false
+  //     }
+  //   }
+  // }
   onSelect(account: Account) {
     this.selectedAccount = account;
   }
   onSubmit(transaction: Transaction) {
     this.transactionService.postTransaction(transaction)
-     .subscribe(transactionRes => this.transaction = transactionRes,
-             resClientError  => this.errorMsg = resClientError);
+      .subscribe(transactionRes => this.transaction = transactionRes,
+        resClientError => this.errorMsg = resClientError);
     // location.reload();
+    this.getAccountsByClient(this.currentClient.id);
     this.getAccountsByClient(this.currentClient.id);
     // console.log(JSON.stringify(transaction));
   }
 
-  onCurrencySelect() {
-  }
+  onCurrencySelect() {}
 
 
 

@@ -36,9 +36,8 @@
   }
 }
 
-/* Sidebar navigation */
 .nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
+  margin-right: -21px;
   margin-bottom: 20px;
   margin-left: -20px;
 }
@@ -51,6 +50,11 @@
 .nav-sidebar > .active > a:focus {
   color: #fff;
   background-color: #428bca;
+  transition: 0.6s;
+} 
+
+.delay {
+  transition: 4.6s;
 }
 
 
@@ -69,24 +73,4 @@
 }
 .main .page-header {
   margin-top: 0;
-}
-
-
-/*
- * Placeholder dashboard ideas
- */
-
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.placeholders h4 {
-  margin-bottom: 0;
-}
-.placeholder {
-  margin-bottom: 20px;
-}
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
 }

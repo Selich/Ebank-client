@@ -82,25 +82,26 @@
         <div class="container col-lg-10">
           <div class="form-group">
             <div class="col-md-6">
-              <label for="">Reciever Name:</label>
-              <input type="text" formControlName="recieverName" class="form-control" id="" placeholder="">
-              <small [hidden]="transactionForm.controls.senderName.valid || (transactionForm.controls.senderName.pristine && !submited)"
+              <label for="">Receiver Name:</label>
+              <input type="text" formControlName="receiverName" class="form-control" id="" placeholder="">
+              <small [hidden]="transactionForm.controls.receiverName.valid || (transactionForm.controls.receiverName.pristine && !submited)"
                 class="text-danger">
                     Required.
               </small>
             </div>
             <div class="col-md-2">
               <label for="">Model:</label>
-              <input type="text" formControlName="model" class="form-control" id="" placeholder="">
-              <small [hidden]="transactionForm.controls.senderName.valid || (transactionForm.controls.senderName.pristine && !submited)"
+              <input type="text"
+               formControlName="model"  class="form-control" id="" placeholder="">
+              <small [hidden]="transactionForm.controls.model.valid || (transactionForm.controls.model.pristine && !submited)"
                 class="text-danger">
                     Required.
               </small>
             </div>
             <div class="col-md-4">
               <label for="">Reference number:</label>
-              <input type="text" formControlName="referenceNumber" class="form-control" id="" placeholder="">
-              <small [hidden]="transactionForm.controls.senderName.valid || (transactionForm.controls.senderName.pristine && !submited)"
+              <input type="text"  formControlName="referenceNumber" class="form-control" id="" placeholder="">
+              <small [hidden]="transactionForm.controls.referenceNumber.valid || (transactionForm.controls.referenceNumber.pristine && !submited)"
                 class="text-danger">
                     Required.
               </small>

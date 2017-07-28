@@ -15,22 +15,13 @@
         <th>Receiver</th>
       </tr>
     </thead>
-<!-- export class Transaction{
-   id: number;
-   senderAccount: Account;
-   senderDescription: string;
-   receiverAccount: Account;
-   currency: string;
-   transactionDate: string;
-   amountTransferred: number;
-} -->
 
     <tbody *ngFor="let transaction of transactions" (click)="onSelect(transaction)">
       <tr>
         <td>{{transaction.id}}</td>
         <td>{{transaction.senderAccount.accountNumber}}</td>
         <span class="glyphicon glyphicon-arrow-right"></span>
-        <td>{{transaction.amountTransferred}}</td>
+        <td>{{transaction.valueamountTransferre}</td>
         <td>{{transaction.currency}}</td>
         <span class="glyphicon glyphicon-arrow-right"></span>
         <td>
