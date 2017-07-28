@@ -1,9 +1,42 @@
+<h2 class="page-header">Account: </h2>
+<div class="container">
+  <div class="row">
     <div class="container col-lg-6 padding-bottom">
       <div class="grid grid-pad container-fluid col-lg-10">
-        <div class="col-md-6  account" *ngFor="let account of accounts; let i = index"[class.selected]="account === selectedAccount">
+        <div class="col-md-6  account" *ngFor="let account of accounts; let i = index" (click)="onSelect(account)" [class.selected]="account === selectedAccount">
           <p>Bank: {{account.bank.bankName}}</p>
+          <h5>Number: {{account.accountNumber}}</h5>
+          <h5>Balance: {{account.accountBalance}}</h5>
           <h5>Available: {{account.availableBalance}}</h5>
-          <button class="btn btn-danger btn-sm" (click) = "deleteAccount(account.id, i)">Delete <span class="glyphicon glyphicon-trash "></span></button>
         </div>
       </div>
     </div>
+    <div class="container col-lg-6 padding-bottom">
+      <div class="grid grid-pad container-fluid col-lg-10">
+        <div class="row" *ngIf="selectedAccount">
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Sender: </th>
+                  <th>Value: </th>
+                  <th>Reciever: </th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let transaction of transactions; let i = index" class="touch">
+                <tr>
+                  <td>{{transaction.id}}</td>
+                  <td>{{transaction.selectedAccount.accountNumber}}</td>
+                  <td>{{transaction.value}}</td>
+                  <td>{{transaction.receiverAccount}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>

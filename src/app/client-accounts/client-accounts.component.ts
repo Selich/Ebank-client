@@ -65,13 +65,17 @@ export class ClientAccountsComponent implements OnInit {
 
   getAccountsById(id) {
     this.accountService.getAccountsById(id)
-      .subscribe(resAccounts => this.accounts = resAccounts,
+      .subscribe(resAccounts => {
+        this.accounts = resAccounts,
+        console.log(resAccounts)
+      },
         resError => this.errorMsg = resError);
   }
 
   deleteAccount(id, i) {
     this.accountService.deleteAccount(id)
       .subscribe(response => {
+        console.log(response);
         this.accounts.splice(i, 1),
           console.log(i);
       })

@@ -35,6 +35,16 @@ export class TransactionService {
           .map((res: Response) => res.json())
           .catch(this.errorHandler);
   }
+  getTransactionByAccount(accountNumber) {
+    const bodyString = JSON.stringify(accountNumber);
+    const headers = new Headers();
+    headers.append( 'Content-Type', 'application/json');
+    headers.append( 'Authorization', this.auth);
+    const options = new RequestOptions({ headers: headers});
+    return this.http.post(this.baseUrl + '/account' , bodyString,  options)
+          .map((res: Response) => res.json())
+          .catch(this.errorHandler);
+  }
   getAccountsByClient(id) {
     const headers = new Headers();
     headers.append( 'Content-Type', 'application/json');

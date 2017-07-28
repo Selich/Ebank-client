@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
+import { Client } from '../models';
 
 @Injectable()
 export class AdminGuardService implements CanActivate {
 
+
+    currentClient: Client;
   constructor(
     private router: Router
   ) { }
 
 
   canActivate() {
-    if (localStorage.getItem('currentClient.role.name') === 'Admin') {
+    this.currentClient = JSON.parse(localStorage.getItem('currentClient'));
+    if (this.currentClient.role.id === 1) {
       return true;
     }
 

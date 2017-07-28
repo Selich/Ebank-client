@@ -1,4 +1,5 @@
-import { Client } from './../models';
+import { TransactionService } from './../services/transaction.service';
+import { Client, Transaction } from './../models';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { ChartsModule } from 'ng2-charts';
@@ -12,17 +13,16 @@ import { ACCOUNTS } from '../mock-accounts';
 })
 export class AccountDetailComponent implements OnInit {
 
-  // accountType: string;
-  // accountNumber: string;
-  // accountBalance: number;
-  // availableBalance: number;
-
-
   accounts: Account[] = [];
   account: Account;
+  transaction: Transaction;
+  transactions: Transaction[];
   selectedAccount: Account;
   currentClient: Client;
-  constructor(private accountService: AccountService) { }
+  constructor(
+    private accountService: AccountService,
+    private transactionService: TransactionService
+  ) { }
 
   ngOnInit() {
 
@@ -37,8 +37,16 @@ export class AccountDetailComponent implements OnInit {
       console.log(this.accounts);
 
   }
+  getTransactionsByAccount(accountNumber) {
+    this.transactionService.getTransactionByAccount(accountNumber)
+      .subscribe(transactionsRes => this.transactions = transactionsRes);
+      console.log(this.transactions);
+
+  }
+
 
   onSelect(account: Account) {
     this.selectedAccount = account;
+    this.getTransactionsByAccount(this.selectedAccount.accountNumber);
   }
 }

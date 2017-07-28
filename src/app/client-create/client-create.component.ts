@@ -53,9 +53,16 @@ ngOnInit() {
 }
 
 onSubmit(client: Client) {
+  client.password = btoa(client.password)
   this.clientService.postClient(client)
    .subscribe(resClient => this.client = resClient,
              resClientError  => this.errorMsg = resClientError);
+  //  .subscribe(resClient => {
+  //                this.client = resClient;
+  //                this.client.password = atob(resClient.password);
+  //                console.log(JSON.stringify(resClient.password));
+  //                console.log(JSON.stringify(this.client.password));
+  //             },
              console.log(JSON.stringify(client));
 }
 

@@ -122,7 +122,8 @@ export class TransactionComponent implements OnInit {
      .subscribe(transactionRes => this.transaction = transactionRes,
              resClientError  => this.errorMsg = resClientError);
     // location.reload();
-    console.log(JSON.stringify(transaction));
+    this.getAccountsByClient(this.currentClient.id);
+    // console.log(JSON.stringify(transaction));
   }
 
   onCurrencySelect() {
