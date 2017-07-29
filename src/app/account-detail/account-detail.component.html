@@ -31,11 +31,43 @@
                 <tbody *ngFor="let receivingTransaction of receivingTransactions; let i = index" class="touch">
                   <tr>
                     <td>{{receivingTransaction.id}}</td>
-                    <td>{{receivingTransaction.senderAccount.accountNumber}}</td>
+                    <td>{{receivingTransaction.sendingAccount}}</td>
                     <td>{{receivingTransaction.value}}</td>
                     <td>{{receivingTransaction.transactionDate}}</td>
                     <td>{{receivingTransaction.receiverAccount}}</td>
                     <td>{{receivingTransaction.paymentCode}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="container col-md-12 padding-bottom">
+        <div class="grid grid-pad container-fluid col-lg-10">
+          <div class="row" *ngIf="selectedAccount">
+
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Reciever: </th>
+                    <th>Value: </th>
+                    <th>Date: </th>
+                    <th>Sender: </th>
+                    <th>Payment Code: </th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let sendingTransaction of sendingTransactions; let i = index" class="touch">
+                  <tr>
+                    <td>{{sendingTransaction.id}}</td>
+                    <td>{{sendingTransaction.senderAccount}}</td>
+                    <td>{{sendingTransaction.value}}</td>
+                    <td>{{sendingTransaction.transactionDate}}</td>
+                    <td>{{sendingTransaction.receiverAccount}}</td>
+                    <td>{{sendingTransaction.paymentCode}}</td>
                   </tr>
                 </tbody>
               </table>

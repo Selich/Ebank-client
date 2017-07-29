@@ -46,9 +46,9 @@ export class Bank {
 
 
 export class Transaction {
-  senderAccount: Account;
+  senderAccount: string;
   senderDescription: string;
-  receiverAccount: Account;
+  receiverAccount: string;
   paymentCode: string;
   currency: Currency;
   value: number;

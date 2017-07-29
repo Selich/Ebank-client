@@ -53,9 +53,9 @@
         </div>
 
         <div class="container col-lg-10">
-          <div class="col-md-6" formGroupName="senderAccount">
+          <div class="col-md-6" >
             <label for="">Sender Account:</label>
-            <input type="text" formControlName="accountNumber" [ngModel]="selectedAccount.accountNumber" class="form-control" id="" placeholder=""
+            <input type="text" formControlName="senderAccount" [ngModel]="selectedAccount.accountNumber" class="form-control" id="" placeholder=""
               readonly>
           </div>
           <small [hidden]="transactionForm.controls.senderAccount.valid || (transactionForm.controls.senderAccount.pristine && !submited)"

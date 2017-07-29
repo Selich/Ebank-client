@@ -3,36 +3,36 @@ import {
   Account,
   Client,
   Address,
-  Transaction
+  Transaction,
+  Bank
 } from './models';
 
+
+export const BANKS: Bank[] = [
+  {
+    id: 1,
+    pib: "12",
+    bankName: "banka"
+  }
+]
 export const ACCOUNTS: Account[] = [
   {
     id:1,
-    bank: {
-      PIB: "1321",
-      bankName: "Komercijala"
-    },
+    bank:  BANKS[0],
     accountNumber: "1231321",
     accountBalance: 13000,
     availableBalance: 13300
   },
   {
     id:2,
-    bank: {
-      PIB: "12323",
-      bankName: "Komercijala"
-    },
+    bank: BANKS[0],
     accountNumber: "12321",
     accountBalance: 13000,
     availableBalance: 13300
   },
   {
     id:3,
-    bank: {
-      PIB: "13123",
-      bankName: "Komercijala"
-    },
+    bank:  BANKS[0],
     accountNumber: "12321",
     accountBalance: 13000,
     availableBalance: 13300
@@ -153,10 +153,10 @@ export const EXCHANGERATES: Currency[] = [
 
 export const TRANSACTIONS: Transaction[] = [
   {
-    senderAccount: ACCOUNTS[0],
+    senderAccount: 'asdfasdf',
     senderDescription: 'asdfasfd',
     paymentCode: '123992',
-    receiverAccount: ACCOUNTS[1],
+    receiverAccount: 'asdfasdf',
     currency: EXCHANGERATES[0],
     model: '92',
     referenceNumber: '1232',

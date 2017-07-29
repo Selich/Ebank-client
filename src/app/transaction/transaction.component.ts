@@ -13,8 +13,8 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  // AbstractControl,
-  // ValidatorFn
+  AbstractControl,
+  ValidatorFn
 } from '@angular/forms';
 import {
   AccountService
@@ -83,9 +83,7 @@ export class TransactionComponent implements OnInit {
   form() {
     this.transactionForm = this.fb.group({
       senderName: ['', Validators.required],
-      senderAccount: this.fb.group({
-        accountNumber: ['', Validators.required],
-      }),
+      senderAccount: ['', Validators.required],
       receiverAccount: ['', Validators.required],
       senderDescription: [''],
       receiverName: ['', Validators.required],
@@ -93,43 +91,42 @@ export class TransactionComponent implements OnInit {
       currency: this.fb.group({
         currencySymbol: ['', Validators.required],
       }),
-      // value: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
-      value: ['', Validators.required],
+      value: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]+$/)])],
       model: ['', Validators.required],
       referenceNumber: ['', Validators.required]
     })
   }
-  // checksumValidator(model: string, referenceNumber: string): ValidatorFn {
-  //   return (control: AbstractControl): {
-  //     [key: string]: any
-  //   } => {
-  //     const m = Number(model);
-  //     const firstK = Number(referenceNumber.substr(0, 2));
-  //     const lastK = referenceNumber.substr(2, referenceNumber.length);
-  //     let p = '';
-  //     let i: number;
-  //     for (i = 0; i < lastK.length; i++) {
-  //       if (lastK[i].match(/\d+/)) {
-  //         p += lastK[i]
-  //       } else if (lastK[i].match(/\A+/)) {
-  //         p += String(lastK[i].charCodeAt(0) - 55);
-  //       } else {
-  //         break;
-  //       }
-  //     }
-  //     const decR = (Number(p) * 100) / m * 10 % 10 / 10;
-  //     let b = m + 1 - Math.round(decR * m);
-  //     b = Number((('0' + b).slice(-2)))
-  //     if (b === firstK) {
-  //       return {
-  //         valid: true
-  //       }
-  //     }
-  //     return {
-  //       valid: false
-  //     }
-  //   }
-  // }
+  checksumValidator(model: string, referenceNumber: string): ValidatorFn {
+    return (control: AbstractControl): {
+      [key: string]: any
+    } => {
+      const m = Number(model);
+      const firstK = Number(referenceNumber.substr(0, 2));
+      const lastK = referenceNumber.substr(2, referenceNumber.length);
+      let p = '';
+      let i: number;
+      for (i = 0; i < lastK.length; i++) {
+        if (lastK[i].match(/\d+/)) {
+          p += lastK[i]
+        } else if (lastK[i].match(/\A+/)) {
+          p += String(lastK[i].charCodeAt(0) - 55);
+        } else {
+          break;
+        }
+      }
+      const decR = (Number(p) * 100) / m * 10 % 10 / 10;
+      let b = m + 1 - Math.round(decR * m);
+      b = Number((('0' + b).slice(-2)))
+      if (b === firstK) {
+        return {
+          valid: true
+        }
+      }
+      return {
+        valid: false
+      }
+    }
+  }
   onSelect(account: Account) {
     this.selectedAccount = account;
   }

@@ -28,10 +28,8 @@ export class AccountDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.currentClient = JSON.parse(localStorage.getItem('currentClient'));
     this.getAccountsByClient(this.currentClient.id);
-
   }
 
   getAccountsByClient(id) {
@@ -40,14 +38,13 @@ export class AccountDetailComponent implements OnInit {
       console.log(this.accounts);
 
   }
-  // getSendingTransactionsByAccount(accountNumber) {
-  //   this.transactionService.getSendingTransactionByAccount(accountNumber)
-  //     .subscribe(transactionsRes => {
-  //       this.sendingTransactions = transactionsRes
-  //       console.log(transactionsRes);
-  //     });
-  //     // console.log(this.sendingTransactions);
-  // }
+  getSendingTransactionsByAccount(accountNumber) {
+    this.transactionService.getSendingTransactionByAccount(accountNumber)
+      .subscribe(transactionsRes => {
+        this.sendingTransactions = transactionsRes
+      });
+      // console.log(this.sendingTransactions);
+  }
 
   getReceivingTransactionsByAccount(accountNumber) {
     this.transactionService.getReceivingTransactionByAccount(accountNumber)
@@ -59,7 +56,7 @@ export class AccountDetailComponent implements OnInit {
 
   onSelect(account: Account) {
     this.selectedAccount = account;
-    // this.getSendingTransactionsByAccount(this.selectedAccount.accountNumber);
+    this.getSendingTransactionsByAccount(this.selectedAccount.accountNumber);
     this.getReceivingTransactionsByAccount(this.selectedAccount.accountNumber);
   }
 }
