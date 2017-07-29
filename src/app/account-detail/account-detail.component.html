@@ -16,6 +16,7 @@
         <div class="grid grid-pad container-fluid col-lg-10">
           <div class="row" *ngIf="selectedAccount">
 
+            <h4>Receiving transactions: </h4>
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
@@ -31,7 +32,7 @@
                 <tbody *ngFor="let receivingTransaction of receivingTransactions; let i = index" class="touch">
                   <tr>
                     <td>{{receivingTransaction.id}}</td>
-                    <td>{{receivingTransaction.sendingAccount}}</td>
+                    <td>{{receivingTransaction.senderAccount}}</td>
                     <td>{{receivingTransaction.value}}</td>
                     <td>{{receivingTransaction.transactionDate}}</td>
                     <td>{{receivingTransaction.receiverAccount}}</td>
@@ -48,6 +49,7 @@
         <div class="grid grid-pad container-fluid col-lg-10">
           <div class="row" *ngIf="selectedAccount">
 
+            <h4>Sending transactions: </h4>
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>

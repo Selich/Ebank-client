@@ -125,7 +125,7 @@ export const appRoutes: Routes = [
     AuthGuardService,
     AuthService,
     ExchangeService,
-    BankService
+    BankService,
   ],
   bootstrap: [AppComponent]
 })
